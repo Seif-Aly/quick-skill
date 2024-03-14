@@ -1,0 +1,30 @@
+:root {
+  /* Font sizes */
+  --font-size-root: 100%; /* 16px if the user's browser default is 16px */
+  --font-size-base: 1em; /* base font size */
+  --font-size-xs: 0.75em; /* extra small font size */
+  --font-size-sm: 0.875em; /* small font size */
+  --font-size-md: 1em; /* medium, default font size */
+  --font-size-lg: 1.125em; /* large font size */
+  --font-size-xl: 1.25em; /* extra large font size */
+  --font-size-xxl: 1.5em; /* extra extra large font size */
+  --font-size-huge: 2em; /* huge font size */
+
+  /* Colors */
+  --color-primary: #6f42c1; /* Primary color - Purple */
+  --color-primary-dark: #5e36b1; /* Darker shade of primary color for hover states */
+  --color-secondary: #ffffff; /* Secondary color - White */
+  --color-text: #2e2f35; /* Main text color */
+  --color-text-inverted: #ffffff; /* Inverted text color - White */
+  --color-shadow: rgba(46, 47, 53, 0.25); /* Shadow color */
+
+  /* Sizing for padding, margins, and more */
+  --size-border-radius: 0.75em; /* Rounded corners */
+  --size-padding: 0.625em 1.25em; /* Padding for elements like buttons */
+  --size-box-shadow: 0.1875em 0.1875em 0px var(--color-text); /* Subtle shadow for depth */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: var(--font-size-base);
+}
