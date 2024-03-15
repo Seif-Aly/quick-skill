@@ -22,6 +22,8 @@
   --size-border-radius: 0.75em; /* Rounded corners */
   --size-padding: 0.625em 1.25em; /* Padding for elements like buttons */
   --size-box-shadow: 0.1875em 0.1875em 0px var(--color-text); /* Subtle shadow for depth */
+
+  --icon-size: 4em;
 }
 
 body {
