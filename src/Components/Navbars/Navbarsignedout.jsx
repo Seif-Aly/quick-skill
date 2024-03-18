@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Navbarsignedout = () => {
+const NavbarSignedOut = () => {
   return (
     <Navbar bg="white" expand="lg" className="py-2">
       <Container>
@@ -47,4 +47,4 @@ const Navbarsignedout = () => {
   );
 };
 
-export default Navbarsignedout;
+export default NavbarSignedOut;

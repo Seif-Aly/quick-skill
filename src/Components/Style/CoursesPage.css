@@ -1,0 +1,122 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.page-title {
+  color: #000;
+  font-weight: 600;
+  font-size: 2em;
+  margin-bottom: 0.5rem;
+}
+
+.page-description {
+  color: #000000;
+  margin-bottom: 2rem;
+}
+
+.filter-title {
+  margin-bottom: 1rem;
+}
+.filters .all-courses-title {
+  flex-grow: 1;
+  font-size: 24px;
+  color: #6f42c1;
+}
+.filters .clear-filters-btn {
+  color: #6c757d; /* Grey */
+  text-decoration: none;
+}
+
+.filters .search-bar {
+  position: relative;
+}
+.filters .search-icon {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.filters .form-control {
+  padding-right: 3rem;
+  border-color: #ced4da; /* Light Grey */
+}
+.filters .btn {
+  border-color: #ced4da; /* Light Grey */
+  color: #6c757d; /* Grey */
+}
+.filters .btn:hover {
+  border-color: #6f42c1; /* Primary Purple */
+  color: #6f42c1; /* Primary Purple */
+}
+.filters .btn:focus,
+.filters .btn:active {
+  background-color: #6f42c1; /* Primary Purple */
+  color: white;
+}
+
+.course-card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  height: 15em;
+}
+
+.course-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.course-card h5 {
+  color: #6f42c1; /* Primary Purple */
+  font-size: 1.5rem;
+}
+
+.course-card .btn-primary {
+  border-color: #6f42c1; /* Primary Purple */
+  background-color: #6f42c1; /* Primary Purple */
+  box-shadow: none;
+}
+
+.course-card .btn-primary:hover {
+  background-color: #5e36b1; /* Darker Purple */
+  border-color: #5e36b1; /* Darker Purple */
+}
+
+.course-card .course-level,
+.course-card .course-duration {
+  display: block;
+  color: #6c757d;
+  margin-right: 1.5em;
+}
+
+.card-text {
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.card-icon {
+  margin-right: 0.5em;
+}
+
+.cert {
+  display: flex;
+  align-items: center;
+}
+
+.cert-img {
+  height: 2em;
+  margin-right: 0.7em;
+}
+
+.title-underline {
+  width: 30em;
+  height: 0.1em;
+  background-color: #6f42c1;
+  margin: 0 auto;
+  border: none;
+  margin-bottom: 2rem; /* Spacing after the title */
+  opacity: 0.8;
+  box-shadow: 0px 4.84px 4.84px 0px rgba(0, 0, 0, 0.25);
+}

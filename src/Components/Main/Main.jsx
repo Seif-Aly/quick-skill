@@ -1,12 +1,12 @@
 import React from "react";
-import Navbarsignedout from "../Navbars/Navbarsignedout";
-import NanbarSignedIn from "../Navbars/NavbarSignedIn";
+import CoursesPageBeforeLogin from "../Courses/CoursesPageBeforeLogin";
+import "../Style/CoursesPage.css";
+import "../Style/Navbars.css";
 
 const Main = () => {
   return (
     <div>
-      <Navbarsignedout></Navbarsignedout>
-      <NanbarSignedIn></NanbarSignedIn>
+      <CoursesPageBeforeLogin />
     </div>
   );
 };
