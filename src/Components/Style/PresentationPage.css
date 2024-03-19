@@ -1,0 +1,100 @@
+.presentation-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.circle-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30em;
+}
+
+.icon {
+  width: 50px;
+  height: auto;
+  position: absolute;
+  animation: float 5s ease-in-out infinite;
+}
+
+.logo {
+  margin-bottom: 3em;
+  width: 8em;
+}
+
+/* Individual icon placement around the circle */
+.icon1 {
+  transform: translate(-50%, -50%) rotate(0deg) translate(150px) rotate(0deg);
+}
+
+.icon1:hover {
+  transform: translate(-50%, -50%) rotate(0deg) translate(150px) rotate(0deg)
+    scale(1.2);
+}
+
+.icon2 {
+  transform: translate(-50%, -50%) rotate(60deg) translate(120px) rotate(-60deg);
+}
+
+.icon2:hover {
+  transform: translate(-50%, -50%) rotate(60deg) translate(120px) rotate(-60deg)
+    scale(1.2);
+}
+
+.icon3 {
+  transform: translate(-50%, -50%) rotate(120deg) translate(120px)
+    rotate(-120deg);
+}
+
+.icon3:hover {
+  transform: translate(-50%, -50%) rotate(120deg) translate(120px)
+    rotate(-120deg) scale(1.2);
+}
+
+.icon4 {
+  transform: translate(-50%, -50%) rotate(180deg) translate(120px)
+    rotate(-180deg);
+}
+
+.icon4:hover {
+  transform: translate(-50%, -50%) rotate(180deg) translate(120px)
+    rotate(-180deg) scale(1.2);
+}
+
+.icon5 {
+  transform: translate(-50%, -50%) rotate(240deg) translate(120px)
+    rotate(-240deg);
+}
+
+.icon5:hover {
+  transform: translate(-50%, -50%) rotate(240deg) translate(120px)
+    rotate(-240deg) scale(1.2);
+}
+
+.icon6 {
+  transform: translate(-50%, -50%) rotate(300deg) translate(120px)
+    rotate(-300deg);
+}
+
+.icon6:hover {
+  transform: translate(-50%, -50%) rotate(300deg) translate(120px)
+    rotate(-300deg) scale(1.2);
+}
+
+h1 {
+  color: #000000;
+  margin-top: 3rem;
+  font-size: x-large !important;
+}
+
+.slogan {
+  background-color: #6f42c1;
+  width: 100%;
+  color: #fff;
+  height: 3em;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+}
