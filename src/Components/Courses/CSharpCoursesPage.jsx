@@ -12,17 +12,17 @@ import {
 } from "react-bootstrap";
 import { BarChart, Clock, PatchCheck, Search } from "react-bootstrap-icons";
 import NavbarSignedIn from "../Navbars/NavbarSignedIn";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const CoursesPage = () => {
+const CSharpCoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const clearButtonRef = useRef(null);
   const navigate = useNavigate();
 
   const courses = [
     { id: 1, title: "C#", level: "Beginner", duration: "2 weeks" },
-    { id: 2, title: "C++", level: "Intermediate", duration: "1 month" },
-    { id: 3, title: "Python", level: "Advanced", duration: "2 months" },
+    { id: 2, title: "C#", level: "Intermediate", duration: "1 month" },
+    { id: 3, title: "C#", level: "Advanced", duration: "2 months" },
   ];
 
   const handleSearchChange = (e) => {
@@ -36,6 +36,10 @@ const CoursesPage = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   const handleNavigateToCertificate = (courseId) => {
     navigate(`/certificate/${courseId}`);
   };
@@ -44,16 +48,24 @@ const CoursesPage = () => {
     <>
       <NavbarSignedIn />
       <Container className="my-5">
-        <Row className="text-center mb-4">
+        <Row className="align-items-center mb-4">
+          <Col xs={12} md={8} lg={6} className="mb-3 mb-md-0">
+            <Button variant="link" onClick={handleBack} className="back-button">
+              &lt; All courses
+            </Button>
+          </Col>
+        </Row>
+        <Row>
           <Col>
-            <h1 className="page-title">Courses 🎓</h1>
+            <Col xs={12} md={4} lg={6} className="mb-3 mb-md-0 text-left">
+              <img src="/csharp.svg" alt="C#" className="csharp-logo" />
+            </Col>
             <hr className="title-underline" />
             <p className="page-description">
-              Explore a world of knowledge and skill development with our online
-              programming courses. Dive into comprehensive lessons and expert
-              guidance to elevate your programming prowess. Unleash your
-              potential and embark on a journey of learning with our carefully
-              crafted courses. Enrich your coding repertoire today!
+              Dive into the world of C# - the versatile programming language for
+              mobile apps, game development, and enterprise solutions. Learning
+              C# unlocks endless possibilities, making you a developer with the
+              key to a world of opportunities.
             </p>
             <hr className="title-underline" />
           </Col>
@@ -63,7 +75,7 @@ const CoursesPage = () => {
         <Row>
           <Col lg={12} className="mb-4 filters">
             <div className="filter-title d-flex align-items-center">
-              <h2 className="all-courses-title">All courses</h2>
+              <h2 className="all-courses-title">All C# courses</h2>
               <Button
                 variant="link"
                 className="clear-filters-btn ml-auto"
@@ -142,4 +154,4 @@ const CoursesPage = () => {
   );
 };
 
-export default CoursesPage;
+export default CSharpCoursesPage;

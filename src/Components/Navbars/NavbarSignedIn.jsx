@@ -32,7 +32,7 @@ const NavbarSignedIn = () => {
       <Container>
         <Navbar.Brand href="#home">
           <img
-            src="quickskill2.png"
+            src="/quickskill2.png"
             alt="Quickskill"
             className="d-inline-block align-top"
             style={{ width: "auto", height: "50px" }}
@@ -59,9 +59,9 @@ const NavbarSignedIn = () => {
           </Nav>
           <Nav>
             <div className="d-flex align-items-center">
-              <img src="fire.png" alt="XP" className="icon" />
+              <img src="/fire.png" alt="XP" className="icon" />
               <span className="mx-2">{userData.xp}</span>
-              <img src="crystal.svg" alt="Currency" className="icon2" />{" "}
+              <img src="/crystal.svg" alt="Currency" className="icon2" />{" "}
               <span className="mx-2">{userData.currency}</span>
               <div className="icon3">❤️</div>
               <span className="mx-2">{userData.hearts}</span>
