@@ -43,7 +43,8 @@
   border: none;
 }
 
-.btn-facebook:hover {
+.btn-facebook:hover,
+.btn-facebook:focus {
   background-color: #3b5998 !important;
   color: #ffffff !important;
   border: none !important;
@@ -55,10 +56,11 @@
   opacity: 0.9;
 }
 
-.btn-facebook:hover {
-}
-
 .form-control {
   border-radius: var(--input-radius);
   border: 1px solid #ced4da;
+}
+
+.btn-signUp {
+  color: #6f42c1;
 }
