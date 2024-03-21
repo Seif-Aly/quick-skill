@@ -8,15 +8,19 @@ import Error from "./Components/Main/Error";
 import "./Components/Style/CoursesPage.css";
 import "./Components/Style/Navbars.css";
 import "./Components/Style/PresentationPage.css";
+import "./Components/Style/RegistrationPage.css";
 import PresentationPage from "./Components/Home/PresentationPage";
 import "./typography.css";
+import RegistrationPage from "./Components/RegistrationAndLogin/RegistrationPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/* <Route path="/" element={<CoursesPage />} /> */}
-        <Route path="/" element={<PresentationPage />} />
+        {/* <Route path="/" element={<PresentationPage />} /> */}
+        <Route path="/" element={<RegistrationPage />} />
         <Route path="/courses/1" element={<CSharpCoursesPage />} />
         <Route path="/certificate/:courseId" element={<CertificatePage />} />
         <Route path="*" element={<Error />} />

@@ -1,27 +1,3 @@
-// import React from "react";
-// import NavbarSignedOut from "../Navbars/NavbarSignedOut";
-
-// const PresentationPage = () => {
-//   return (
-//     <>
-//       <NavbarSignedOut />
-//       <div className="presentation-container">
-//         <h1>Welcome!</h1>
-//         <div className="circle-container">
-
-//           <img
-//             src={"/quickskill2.png"}
-//             alt="QuickSkill Logo"
-//             className="logo"
-//           />
-//         </div>
-//         <h2>Master skills fast and efficient using AI</h2>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default PresentationPage;
 import React from "react";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import { Container, Row, Col } from "react-bootstrap";

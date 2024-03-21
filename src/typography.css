@@ -24,6 +24,10 @@
   --size-box-shadow: 0.1875em 0.1875em 0px var(--color-text); /* Subtle shadow for depth */
 
   --icon-size: 4em;
+
+  --box-shadow: drop-shadow(10.8px 10.8px 24.36px rgba(0, 0, 0, 0.25));
+
+  --input-radius: 0.25rem;
 }
 
 body {
