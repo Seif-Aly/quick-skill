@@ -70,17 +70,17 @@
   }
 }
 
-.icon {
+.icon11 {
   height: var(--icon-size);
   margin-right: var(--size-padding);
 }
 
-.icon2 {
+.icon22 {
   height: 2.1em;
   margin-right: var(--size-padding);
 }
 
-.icon3 {
+.icon33 {
   font-size: 1.7em;
   margin-right: var(--size-padding);
 }

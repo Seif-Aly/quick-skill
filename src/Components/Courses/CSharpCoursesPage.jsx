@@ -13,6 +13,7 @@ import {
 import { BarChart, Clock, PatchCheck, Search } from "react-bootstrap-icons";
 import NavbarSignedIn from "../Navbars/NavbarSignedIn";
 import { useNavigate, Link } from "react-router-dom";
+import "../Style/CoursesPage.css";
 
 const CSharpCoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");

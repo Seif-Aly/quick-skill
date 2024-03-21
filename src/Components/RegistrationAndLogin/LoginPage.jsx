@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
+import "../Style/RegistrationAndLogin.css";
 
 const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(false);

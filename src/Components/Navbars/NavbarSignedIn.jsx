@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Container, Image, Nav, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../Style/Navbars.css";
 
 const NavbarSignedIn = () => {
   const [userData, setUserData] = useState({
@@ -18,7 +18,7 @@ const NavbarSignedIn = () => {
         hearts: 5,
         xp: 20,
         currency: 500,
-        image: "path-to-your-profile-image.png", // Replace with actual path or API response
+        image: "/prof.png",
       };
 
       setUserData(apiResponse);
@@ -59,11 +59,11 @@ const NavbarSignedIn = () => {
           </Nav>
           <Nav>
             <div className="d-flex align-items-center">
-              <img src="/fire.png" alt="XP" className="icon" />
+              <img src="/fire.png" alt="XP" className="icon11" />
               <span className="mx-2">{userData.xp}</span>
-              <img src="/crystal.svg" alt="Currency" className="icon2" />{" "}
+              <img src="/crystal.svg" alt="Currency" className="icon22" />{" "}
               <span className="mx-2">{userData.currency}</span>
-              <div className="icon3">❤️</div>
+              <div className="icon33">❤️</div>
               <span className="mx-2">{userData.hearts}</span>
               <Image
                 src={userData.image}

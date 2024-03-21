@@ -1,6 +1,7 @@
 import React from "react";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import { Container, Row, Col } from "react-bootstrap";
+import "../Style/PresentationPage.css";
 
 const PresentationPage = () => {
   return (

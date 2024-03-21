@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../Style/Navbars.css";
 
 const NavbarSignedOut = () => {
   return (

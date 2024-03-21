@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { BarChart, Clock, PatchCheck, Search } from "react-bootstrap-icons";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
+import "../Style/CoursesPage.css";
 
 const CoursesPageBeforeLogin = () => {
   const [searchQuery, setSearchQuery] = useState("");
