@@ -1,0 +1,457 @@
+.sidebar {
+  width: 15em;
+  height: 18em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1em;
+  margin-top: 12em;
+  margin-bottom: 3em;
+  margin-left: 5em;
+  border-radius: 0.5em;
+}
+
+.sidebar-title {
+  font-size: 1.375em;
+  color: #6200ee;
+  margin-bottom: 1.5em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-link {
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  font-size: 1em;
+  color: #333;
+  display: block;
+  transition: background-color 0.3s ease;
+  border-radius: 0.25em;
+  margin-bottom: 0.3em;
+}
+
+.sidebar-link:not(.delete-link):hover,
+.sidebar-link.active {
+  background-color: #6200ee;
+  color: #fff;
+}
+
+.delete-link {
+  color: #d32f2f;
+}
+
+.delete-link:hover {
+  background-color: #d32f2f;
+  color: #fff;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.profile-settings {
+  margin-top: 4em;
+}
+
+.has-error .form-control {
+  border-color: #dc3545;
+}
+
+.has-error .invalid-feedback {
+  display: block;
+}
+
+.upload-btn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #6200ee;
+  position: relative;
+}
+
+.upload-icon {
+  margin-right: 0.5em;
+}
+
+.upload-input {
+  display: none;
+}
+
+.photo-preview {
+  width: 5em;
+  height: 5em;
+  border-radius: 50% !important;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  border: 0.1875em solid white;
+  position: absolute;
+  left: 13em;
+}
+
+.custom-file-upload {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3125em 0.625em;
+  border-radius: 1.25em;
+  border: 0.125em solid #6200ee;
+  color: #6200ee;
+  background: #fff;
+  margin-right: 0.625em;
+}
+
+.custom-file-upload:hover,
+.custom-file-upload:focus {
+  background: #6200ee;
+  color: #fff;
+}
+
+.upload-input {
+  display: none;
+}
+
+.goal-option {
+  display: inline-block;
+  margin: 0.3125em;
+  padding: 0.625em 0.9375em;
+  border: none;
+  border-radius: 1.25em;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #efefef92;
+}
+
+.goal-option.active {
+  background-color: #6f42c1;
+  color: white;
+}
+
+.goal-option:focus {
+  outline: none;
+}
+
+.study-days-slider {
+  margin: 1.25em 0;
+}
+
+.study-days-slider input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+}
+
+.study-days-indicator {
+  text-align: center;
+  padding: 0.3125em 0.625em;
+  background-color: #6f42c1;
+  color: white;
+  border-radius: 1.25em;
+  display: inline-block;
+  margin-top: 0.3125em;
+}
+
+.toggle-container {
+  display: inline-block;
+  padding: 0.625em 1.25em;
+  border-radius: 1.25em;
+  margin-top: 0.625em;
+  background-color: #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-container .toggle-button {
+  display: inline-block;
+  padding: 0.125em 0.625em;
+}
+
+.toggle-container .active {
+  background-color: #6f42c1;
+  color: white;
+  border-radius: 1.25em;
+}
+
+.save-goal-button {
+  display: block;
+  width: 20%;
+  padding: 0.625em 0;
+  margin-top: 1.25em;
+  background-color: #6f42c1;
+  color: white;
+  border: none;
+  border-radius: 1.25em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-goal-button:hover {
+  background-color: #5a3498;
+}
+
+.goal-settings {
+  margin-top: 4em;
+  background: #ffffff;
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+}
+
+.study-days-container {
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+
+.custom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 0.3125em;
+  border-radius: 0.3125em;
+  background: #e9ecef;
+  outline: none;
+}
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.9375em;
+  height: 0.9375em;
+  border-radius: 50%;
+  background: #6f42c1;
+  cursor: pointer;
+  margin-top: -0.1875em;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.custom-slider:active::-webkit-slider-thumb {
+  background-color: #5a3498;
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.slider-marks {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.slider-mark {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out;
+}
+
+.slider-mark.active {
+  transform: scale(1.5);
+  font-size: 1.5em;
+  color: #6f42c1;
+}
+
+.slider-mark:nth-child(1) {
+  left: 0;
+}
+.slider-mark:nth-child(2) {
+  left: 16%;
+}
+.slider-mark:nth-child(3) {
+  left: 33%;
+}
+.slider-mark:nth-child(4) {
+  left: 49%;
+}
+.slider-mark:nth-child(5) {
+  left: 66%;
+}
+.slider-mark:nth-child(6) {
+  left: 82%;
+}
+.slider-mark:nth-child(7) {
+  left: 98%;
+}
+
+.goalHd {
+  margin-top: -0.5em !important;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.goal-shd {
+  font-size: large;
+  font-weight: 400;
+}
+
+.email-reminder-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.email-reminder-question {
+  font-size: large;
+  margin-bottom: 1em;
+  margin-top: 3.5em;
+}
+
+.email-reminder-toggle {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.toggle-btn {
+  margin: 0 10px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-btn.active {
+  color: white;
+}
+
+.toggle-btn:first-child.active {
+  background-color: #28a745; /* green */
+}
+
+.toggle-btn:last-child.active {
+  background-color: #6f42c1; /* purple */
+}
+
+.toggle-btn svg {
+  margin-left: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .email-reminder-toggle {
+    display: block;
+  }
+
+  .toggle-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* Delete Account Section Container */
+.delete-container {
+  margin-top: 4em;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Delete Account Titles and List */
+.delete-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.delete-list {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.delete-list li {
+  margin-bottom: 0.25rem;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.delete-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #dc3545;
+}
+
+/* Delete Account Form */
+.delete-form .form-label {
+  font-weight: bold;
+  color: #495057;
+}
+
+/* Password Input */
+#deletePassword {
+  margin-bottom: 1rem;
+}
+
+/* Custom Checkbox */
+.delete-checkbox .form-check-input {
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.delete-checkbox .form-check-label {
+  font-size: 0.875rem;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* Delete Button */
+.delete-btn {
+  width: 20% !important;
+  display: flex;
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  background-color: #dc3545 !important;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.delete-btn:disabled {
+  background-color: #e2e3e5 !important;
+  color: #6c757d;
+}
+
+/* Ensure the checkbox aligns nicely with the text */
+.delete-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+/* Alert and Information text styling */
+.delete-alert,
+.delete-info {
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  color: #6c757d;
+}
+
+/* Style for the alert icon, if you have one */
+.delete-alert-icon {
+  color: #dc3545;
+  margin-right: 0.5rem;
+}
+
+/* Make sure the Delete button stands out */
+.delete-btn {
+  width: 100%;
+  margin-top: 2rem; /* Add some space above the delete button */
+}
