@@ -17,12 +17,13 @@ import Sidebar from "./Components/Settings/Sidebar";
 import ProfileSettings from "./Components/Settings/ProfileSettings";
 import DeleteSettings from "./Components/Settings/DeleteSettings";
 import GoalSettings from "./Components/Settings/GoalSettings";
+import SearchPage from "./Components/SearchPage/SearchPage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<CSharpCoursesPage />} />
+        <Route path="/" element={<SearchPage />} />
 
         <Route
           path="/settings"
