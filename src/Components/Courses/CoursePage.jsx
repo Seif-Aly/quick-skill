@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Accordion } from "react-bootstrap";
-import NavbarSignedIn from "../Navbars/NavbarSignedIn";
+import NavbarInCourse from "../Navbars/NavbarInCourse";
 import { useNavigate, Link } from "react-router-dom";
 import "../Style/CoursePage.css";
 
@@ -71,7 +71,7 @@ const CoursePage = () => {
 
   return (
     <>
-      <NavbarSignedIn />
+      <NavbarInCourse />
       <Container className="course-page-container">
         <Row>
           <Col className="my-4">

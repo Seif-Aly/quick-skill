@@ -6,7 +6,7 @@ const NavbarSignedOut = () => {
   return (
     <Navbar bg="white" expand="lg" className="py-2">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/PresentationPage">
           <img
             src="quickskill2.png"
             alt="Quickskill"
@@ -14,19 +14,8 @@ const NavbarSignedOut = () => {
             style={{ width: "auto", height: "50px" }}
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mx-auto">
-            <Nav.Link href="#courses" className="nav-link-lg">
-              Courses
-            </Nav.Link>
-            <Nav.Link href="#community" className="nav-link-lg">
-              Community
-            </Nav.Link>
-            <Nav.Link href="#resources" className="nav-link-lg">
-              Resources
-            </Nav.Link>
-          </Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 " />
+        <div className="nav-buttons">
           <Nav>
             <Button
               variant="outline-secondary"
@@ -38,10 +27,10 @@ const NavbarSignedOut = () => {
               variant="primary"
               className="mx-2 custom-button-create-account"
             >
-              Create free account
+              Sign Up
             </Button>
           </Nav>
-        </Navbar.Collapse>
+        </div>
       </Container>
     </Navbar>
   );
