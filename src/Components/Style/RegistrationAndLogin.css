@@ -7,6 +7,10 @@
   border: none;
 }
 
+.nav-link-lg {
+  font-size: 1.2em !important;
+}
+
 .card-title {
   color: #6f42c1;
   font-size: x-large;
@@ -14,6 +18,10 @@
 
 .card-subtitle {
   font-weight: 200;
+}
+
+.nav-buttons {
+  justify-content: flex-end;
 }
 
 .btn-primary {

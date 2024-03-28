@@ -18,22 +18,18 @@ const LoginPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // This will toggle the "remember me" checkbox state
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
   };
 
-  // Add your login logic here
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (rememberMe) {
-      // Logic to remember the user, like setting a cookie or localStorage
+      // Logic to remember the user(setting a cookie)
     } else {
       // Logic to not remember the user
     }
-
-    // Proceed with the login process
   };
   return (
     <>

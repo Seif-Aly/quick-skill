@@ -53,7 +53,7 @@ const CreateNewPasswordPage = () => {
                 you can login with new password.
               </p>
               <Button onClick={goToLogin} className="mt-4" variant="primary">
-                Go to QuickSkill
+                Continue
               </Button>
             </Col>
           ) : (
