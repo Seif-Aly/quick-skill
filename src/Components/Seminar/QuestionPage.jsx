@@ -5,7 +5,7 @@ import "../Style/QuestionPage.css";
 
 const QuestionPage = () => {
   const content = "Vectors";
-  const difficulties = ["Hard"];
+  const difficulties = ["Medium"];
 
   const questionsMockData = [
     {

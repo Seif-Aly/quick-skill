@@ -4,9 +4,12 @@ import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import "../Style/RegistrationAndLogin.css";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../Store/actions";
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // State for form inputs
   const [formData, setFormData] = useState({
@@ -26,12 +29,27 @@ const RegistrationPage = () => {
     });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would add your form validation and submission logic
-    // After successful registration, you can redirect the user
-    navigate("/dashboard");
+
+    // Perform validation checks here...
+
+    if (formData.password !== formData.confirmPassword) {
+      // Handle password mismatch
+      return;
+    }
+
+    // Dispatch the registration action
+    dispatch(
+      registerUser({
+        firstname: formData.firstName,
+        lastname: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+      })
+    ).then(() => {
+      navigate("/AllCourses");
+    });
   };
 
   return (
