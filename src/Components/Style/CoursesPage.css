@@ -1,5 +1,3 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
-
 .page-title {
   color: #000;
   font-weight: 600;
@@ -28,6 +26,7 @@
 .filters .search-bar {
   position: relative;
 }
+
 .filters .search-icon {
   background: transparent;
   border: none;
@@ -38,29 +37,81 @@
 }
 .filters .form-control {
   padding-right: 3rem;
-  border-color: #ced4da; /* Light Grey */
+  border-color: #ced4da;
 }
 .filters .btn {
-  border-color: #ced4da; /* Light Grey */
-  color: #6c757d; /* Grey */
+  border-color: #ced4da;
+  color: #6c757d;
 }
 .filters .btn:hover {
-  border-color: #6f42c1; /* Primary Purple */
-  color: #6f42c1; /* Primary Purple */
+  border-color: #6f42c1 !important;
+  color: #6f42c1 !important;
 }
 .filters .btn:focus,
 .filters .btn:active {
-  background-color: #6f42c1; /* Primary Purple */
-  color: white;
+  background-color: #6f42c1 !important;
+  color: white !important;
 }
 
 .course-card {
+  position: relative;
   border: none;
   border-radius: 0.5rem;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
   height: 10em;
   padding: 0;
+}
+
+.course-image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.course-image {
+  height: 13em;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.course-logo {
+  left: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-bottom: 0.5em;
+  margin-right: 0.5em;
+}
+
+.card-logo-title {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-title {
+  font-size: larger;
+  font-weight: 500;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.card-body {
+  margin-top: -1em;
+}
+
+.course-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
 }
 
 .course-card:hover {
@@ -85,10 +136,11 @@
 }
 
 .course-card .course-level,
-.course-card .course-duration {
+.course-card .course-duration,
+.course-card .course-paid {
   display: block;
   color: #6c757d;
-  margin-right: 1.5em;
+  margin-right: 2em;
 }
 
 .card-text {
@@ -99,6 +151,8 @@
 
 .card-icon {
   margin-right: 0.5em;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 .cert-img {

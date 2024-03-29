@@ -1,0 +1,254 @@
+.course-intro {
+  position: relative;
+  padding: 2rem 1rem;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: -4rem;
+  margin-top: 7rem;
+  z-index: 2;
+  width: 70%;
+}
+
+.course-logo {
+  background-color: #fff;
+  height: 5em;
+  left: 0;
+  width: 6em;
+  height: 6em;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  margin-top: -6em;
+  margin-right: 0.5em;
+}
+
+.course-name {
+  font-size: 2rem;
+  color: #5a3498;
+  margin: 0.5rem 0;
+}
+
+.course-description li {
+  display: inline-block;
+  margin-right: 1rem;
+  color: #6c757d;
+}
+
+.course-page-container::after {
+  content: "";
+  display: block;
+  background-color: #6f42c1;
+  height: 25rem;
+  width: 100%;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  z-index: -1;
+}
+
+.btn-primary {
+  background-color: #5a3498;
+  border-color: #5a3498;
+}
+
+.btn-primary:hover {
+  background-color: #452c77;
+  border-color: #452c77;
+}
+
+.btn-secondary {
+  background-color: #d3d3d3;
+  border-color: #d3d3d3;
+  color: #bdbdbd;
+}
+
+.btn-secondary:hover {
+  background-color: #bdbdbd;
+  border-color: #bdbdbd;
+}
+
+.accordion .accordion-item {
+  margin-bottom: 1rem;
+}
+
+.accordion-header {
+  font-size: 1.5rem;
+  background-color: #e7e7e7;
+}
+
+.accordion-body {
+  background-color: #f8f9fa;
+}
+
+.accordion-body ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.accordion-body li {
+  padding: 0.5rem 0;
+}
+
+.course-accordion {
+  max-width: 72%;
+  margin-top: 6em;
+  margin-left: 11em;
+}
+.course-accordion .course-section {
+  border: none;
+  background: white;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-accordion .course-section .accordion-header {
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: #6f42c1;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.course-accordion .course-section .accordion-button {
+  background: #6f42c1;
+  color: white;
+  padding-left: 2rem;
+}
+
+.course-accordion .course-section .accordion-button:not(.collapsed) {
+  background: #5a3498;
+  color: white;
+}
+
+.course-accordion .course-section .accordion-button:focus {
+  box-shadow: none;
+}
+
+.course-accordion .course-section .accordion-body {
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: #343a40;
+  background: #f8f9fa;
+  border-top: none;
+}
+
+.lesson-item {
+  background: #fff;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.lesson-item:hover {
+  background: #eee;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn {
+  display: inline;
+  font-size: 1em;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  padding-left: 0;
+  font-weight: 400px;
+  transition: color 0.3s ease-in-out;
+}
+.course-accordion .accordion-button::after {
+  color: white !important;
+}
+.course-page-container .course-accordion .accordion-button::after {
+  color: white !important;
+}
+
+.back-btn:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.course-top-section {
+  border-radius: 8px;
+  color: #6f42c1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 30px 15px;
+}
+
+.course-info {
+  display: flex;
+  align-items: center;
+}
+
+.course-title {
+  font-size: x-larg;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.course-members {
+  color: #6f42c1;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.btn-join {
+  padding: 0.5rem 1.5rem;
+  margin-top: -1em;
+  margin-bottom: 1em;
+}
+
+.course-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-description {
+  margin-top: 0.5rem;
+  color: #6c757d;
+}
+
+.certification-block {
+  max-width: 72%;
+  margin-left: 11em;
+  margin-top: -2em;
+  margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  text-align: left;
+}
+
+.cert-logo-container {
+  padding: 1rem;
+  border: 2px solid #6f42c1;
+  border-radius: 0.5rem;
+  margin-right: 2rem;
+}
+
+.cert-logo {
+  width: 5em;
+}
+
+.cert-info h2 {
+  margin: 0;
+  color: #6f42c1;
+  font-size: 1.5rem;
+}
+
+.cert-info p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-top: 0.5rem;
+}
+
+.certification-section {
+  margin-top: 5rem;
+}

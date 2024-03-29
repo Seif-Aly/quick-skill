@@ -18,12 +18,16 @@ import ProfileSettings from "./Components/Settings/ProfileSettings";
 import DeleteSettings from "./Components/Settings/DeleteSettings";
 import GoalSettings from "./Components/Settings/GoalSettings";
 import SearchPage from "./Components/SearchPage/SearchPage";
+import CoursePage from "./Components/Courses/CoursePage";
+import QuestionPage from "./Components/Seminar/QuestionPage";
+import LecturePage from "./Components/Lecture/LecturePage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<SearchPage />} />
+        <Route path="/" element={<RegistrationPage />} />
+        <Route path="/AllCourses" element={<CoursesPage />} />
 
         <Route
           path="/settings"

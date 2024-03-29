@@ -48,7 +48,7 @@ const CSharpCoursesPage = () => {
   return (
     <>
       <NavbarSignedIn />
-      <Container className="my-5">
+      <Container className="my-1">
         <Row className="align-items-center mb-4">
           <Col xs={12} md={8} lg={6} className="mb-3 mb-md-0">
             <Button variant="link" onClick={handleBack} className="back-button">
