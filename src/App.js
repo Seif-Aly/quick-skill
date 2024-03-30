@@ -22,12 +22,13 @@ import CoursePage from "./Components/Courses/CoursePage";
 import QuestionPage from "./Components/Seminar/QuestionPage";
 import LecturePage from "./Components/Lecture/LecturePage";
 import ResetPasswordPage from "./Components/RegistrationAndLogin/ResetPassword";
+import CreateNewPasswordPage from "./Components/RegistrationAndLogin/CreateNewPasswordPage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<ResetPasswordPage />} />
+        <Route path="/" element={<CreateNewPasswordPage />} />
         <Route path="/AllCourses" element={<CoursesPage />} />
 
         <Route
