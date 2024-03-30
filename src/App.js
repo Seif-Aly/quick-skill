@@ -24,6 +24,7 @@ import LecturePage from "./Components/Lecture/LecturePage";
 import ResetPasswordPage from "./Components/RegistrationAndLogin/ResetPassword";
 import CreateNewPasswordPage from "./Components/RegistrationAndLogin/CreateNewPasswordPage";
 import PresentationPage from "./Components/Home/PresentationPage";
+import LeaderboardPage from "./Components/Leaderboard/LeaderboardPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={<CoursePage />} />
         <Route path="/AllCourses" element={<CoursesPage />} />
         <Route path="/PresentationPage" element={<PresentationPage />} />
+        <Route path="/Leaderboard" element={<LeaderboardPage />} />
 
         <Route
           path="/settings"

@@ -1,0 +1,261 @@
+.leaderboard-page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-and-league-container {
+  margin-top: 4em;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.rating-toggle .btn {
+  transition: background-color 0.3s ease;
+}
+
+.rating-toggle .btn:hover {
+  background-color: #fff !important;
+  color: #6f42c1 !important ;
+  border-color: #6f42c1;
+}
+
+.rating-toggle .btn-primary {
+  background-color: #fff !important;
+  color: #6f42c1 !important ;
+  border-color: #6f42c1;
+}
+
+/* Slider Styles */
+
+.league-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: filter 0.5s ease;
+}
+
+.future-league img,
+.league-item img {
+  width: 80px;
+  opacity: 0.7;
+}
+
+.league-item.current-league {
+  transform: scale(1.2) !important;
+}
+
+.future-league {
+  filter: grayscale(100%) opacity(50%);
+}
+
+.custom-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 25%;
+  left: 3%;
+  right: 3%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.custom-left-arrow,
+.custom-right-arrow {
+  background-color: #fff;
+  color: #6f42c1;
+  border: none;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.custom-left-arrow:hover,
+.custom-right-arrow:hover {
+  background-color: #e9ecef;
+}
+
+.custom-left-arrow {
+  position: absolute;
+  left: 10px;
+}
+
+.custom-right-arrow {
+  position: absolute;
+  right: 10px;
+}
+
+.carousel-container {
+  position: sticky;
+}
+
+/* Rating Section Styles */
+.rating-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weekly-rating,
+.following-rating {
+  flex: 1;
+  padding: 1rem;
+}
+
+.weekly-rating {
+  margin-right: 1rem;
+}
+
+.following-rating {
+  margin-left: 1rem;
+}
+
+.rating-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.user-rating {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 10px;
+  flex-grow: 1;
+  transition: all 0.3s ease-in-out;
+  flex: 1 0 auto;
+}
+
+.user-rating:hover {
+  transform: scale(1.01);
+}
+
+.user-rating .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-rating .user-number {
+  font-size: 1.4rem;
+  color: #6f42c1;
+  margin-right: 10px;
+}
+
+.user-rating .user-name {
+  margin-top: 0.1em;
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.user-rating .user-xp {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.current-league {
+  border: none;
+  background: none;
+  border-radius: 10px;
+  transform: scale(2);
+  padding: 10px;
+  text-align: center;
+  color: #6f42c1;
+}
+
+.current-league img {
+  transform: scale(1.2);
+  width: 50px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.current-league span {
+  display: block;
+  font-weight: bold;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .rating-section {
+    flex-direction: column;
+  }
+
+  .weekly-rating,
+  .following-rating {
+    margin: 0 0 2rem 0;
+  }
+}
+
+.future-league img {
+  filter: brightness(50%);
+}
+
+.carousel-caption h3 {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.rating-toggle {
+  margin-bottom: 2em;
+}
+
+.card-current {
+  width: 25em;
+  flex-grow: 1;
+  flex-basis: 20%;
+  border: none;
+}
+
+.users-rating-container {
+  flex-grow: 2;
+  flex-basis: 60%;
+  margin-right: 1rem;
+}
+
+.cont-league {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.league-cont {
+  margin-top: 3em;
+  margin-right: 3em;
+}
+
+.league-cont h1 {
+  margin-bottom: 0.5em;
+}
