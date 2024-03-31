@@ -203,3 +203,123 @@
 .password-toggle .form-control {
   padding-right: 45px;
 }
+
+.profile-menu {
+  padding: 0.1rem;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: left;
+}
+
+.profile-menu-item {
+  display: block;
+  padding: 0.5rem 0;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.profile-menu-item:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.bs-popover-bottom .arrow::after {
+  border-bottom-color: #fff;
+}
+
+.course-icon {
+  margin-right: 15px;
+  cursor: pointer;
+  width: 1.8em;
+}
+
+.course-popover .course-menu-item {
+  padding: 8px 12px;
+  display: flex;
+  width: 100%;
+  clear: both;
+  font-weight: 400;
+  text-align: inherit;
+  white-space: nowrap;
+  background: 0 0;
+  border: 0;
+  text-decoration: none;
+  color: #555;
+}
+
+.course-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  color: #000;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.course-popover .course-menu-item:hover {
+  background-color: #f8f9fa;
+}
+
+.course-popover {
+  width: 250px;
+  margin-left: -0.4em;
+}
+
+.course-img {
+  margin-right: 15px;
+  width: 1.8em;
+  cursor: pointer;
+}
+
+.popover-hearts .popover-body {
+  font-size: 1em;
+  text-align: center;
+}
+
+.hearts-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  gap: 1em;
+}
+
+.hearts-container .fa-heart {
+  margin: 0 5px;
+  font-size: 24px;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer .fa-reg-clock {
+  margin-right: 5px;
+}
+
+.full-hearts {
+  color: #6c757d;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.heart-icn {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.heart-cont {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-right: 2em;
+  margin-left: 0.2em;
+}
+
+.purple-line {
+  height: 1px;
+  background-color: #6f42c1;
+  margin: 8px auto;
+  width: 80%;
+}
