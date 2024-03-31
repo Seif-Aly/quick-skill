@@ -11,16 +11,18 @@ const RegistrationPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // State for form inputs
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
     lastName: "",
     password: "",
     confirmPassword: "",
+    errors: {
+      password: "",
+      confirmPassword: "",
+    },
   });
 
-  // Update formData state on input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -32,14 +34,19 @@ const RegistrationPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Perform validation checks here...
+    let newErrors = { ...formData.errors, password: "", confirmPassword: "" };
 
-    if (formData.password !== formData.confirmPassword) {
-      // Handle password mismatch
+    if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters long.";
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    if (newErrors.password || newErrors.confirmPassword) {
+      setFormData({ ...formData, errors: newErrors });
       return;
     }
 
-    // Dispatch the registration action
     dispatch(
       registerUser({
         firstname: formData.firstName,
@@ -54,7 +61,7 @@ const RegistrationPage = () => {
 
   return (
     <>
-      <NavbarSignedOut /> {/* Your Navbar component */}
+      <NavbarSignedOut />
       <Container className="mt-5">
         <Row className="justify-content-center">
           <Col lg={6}>
@@ -113,6 +120,11 @@ const RegistrationPage = () => {
                       onChange={handleChange}
                       required
                     />
+                    {formData.errors.password && (
+                      <Form.Text className="text-danger">
+                        {formData.errors.password}
+                      </Form.Text>
+                    )}
                   </Form.Group>
 
                   <Form.Group
@@ -127,6 +139,11 @@ const RegistrationPage = () => {
                       onChange={handleChange}
                       required
                     />
+                    {formData.errors.confirmPassword && (
+                      <Form.Text className="text-danger">
+                        {formData.errors.confirmPassword}
+                      </Form.Text>
+                    )}
                   </Form.Group>
 
                   <Button

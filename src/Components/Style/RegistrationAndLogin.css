@@ -30,7 +30,8 @@
 }
 
 .btn-primary:hover,
-.btn-primary:focus {
+.btn-primary:focus,
+.btn-primary:disabled {
   background-color: #ffffff !important;
   color: #6f42c1 !important;
   border: solid !important;

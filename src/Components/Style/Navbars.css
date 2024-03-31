@@ -1,40 +1,32 @@
-/* Navbar toggle customization */
 .navbar-toggler {
   outline: none !important;
 }
 
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
 .btn.custom-button-login,
 .btn.custom-button-create-account {
-  font-size: var(--font-size-md); /* Medium font size */
-  border-radius: var(--size-border-radius); /* Rounded corners */
-  padding: var(--size-padding); /* Padding for larger click area */
-  box-shadow: var(--size-box-shadow); /* Subtle shadow for depth */
-  transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  font-size: var(--font-size-md);
+  border-radius: var(--size-border-radius);
+  padding: var(--size-padding);
+  box-shadow: var(--size-box-shadow);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .btn.custom-button-login {
-  background-color: var(--color-secondary); /* White background */
-  color: var(--color-primary); /* Purple text */
-  border-color: var(--color-primary); /* Purple border */
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .btn.custom-button-login:hover {
-  color: var(--color-primary-dark);
-  border-color: var(
-    --color-primary-dark
-  ); /* Border color transition on hover */
+  color: var(--color-secondary);
+  border-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
 }
 
 .btn.custom-button-create-account:hover {
-  background-color: var(--color-primary-dark); /* Darker purple on hover */
-  color: var(--color-secondary); /* White text on hover */
-  border-color: var(
-    --color-primary-dark
-  ); /* Border color transition on hover */
+  background-color: var(--color-primary-dark);
+  color: var(--color-secondary);
+  border-color: var(--color-primary-dark);
 }
 
 .nav-link-lg {
@@ -52,6 +44,7 @@
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
   background-color: var(--color-primary-dark) !important;
+  color: var(--color-secondary) !important;
 }
 
 .btn.custom-button-create-account {
@@ -63,8 +56,8 @@
 @media (max-width: 967px) {
   .btn.custom-button-login,
   .btn.custom-button-create-account {
-    padding: 0.5em 1em; /* Smaller padding */
-    font-size: var(--font-size-sm); /* Smaller font size */
+    padding: 0.5em 1em;
+    font-size: var(--font-size-sm);
     margin-top: 0.8em;
     width: fit-content;
   }
@@ -83,4 +76,9 @@
 .icon33 {
   font-size: 1.7em;
   margin-right: var(--size-padding);
+}
+
+.left-navbar {
+  display: flex;
+  align-items: center;
 }

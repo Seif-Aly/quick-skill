@@ -6,7 +6,7 @@ const NavbarSignedOut = () => {
   return (
     <Navbar bg="white" expand="lg" className="py-2">
       <Container>
-        <Navbar.Brand href="/PresentationPage">
+        <Navbar.Brand href="/">
           <img
             src="quickskill2.png"
             alt="Quickskill"
@@ -20,12 +20,14 @@ const NavbarSignedOut = () => {
             <Button
               variant="outline-secondary"
               className="mx-2 custom-button-login"
+              href="/login"
             >
               Login
             </Button>
             <Button
               variant="primary"
               className="mx-2 custom-button-create-account"
+              href="/sign-up"
             >
               Sign Up
             </Button>

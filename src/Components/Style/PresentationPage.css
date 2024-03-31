@@ -23,7 +23,6 @@
   width: 8em;
 }
 
-/* Individual icon placement around the circle */
 .icon1 {
   transform: translate(-50%, -50%) rotate(0deg) translate(150px) rotate(0deg);
 }

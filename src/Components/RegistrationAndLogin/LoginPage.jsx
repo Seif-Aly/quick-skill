@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import "../Style/RegistrationAndLogin.css";
 
 const LoginPage = () => {
-  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,19 +20,14 @@ const LoginPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleRememberMe = () => {
-    setRememberMe(!rememberMe);
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    if (rememberMe) {
-      // Logic to remember the user(setting a cookie)
-    } else {
-      // Logic to not remember the user
-    }
   };
+
+  const goToCourses = () => {
+    navigate("/allcourses");
+  };
+
   return (
     <>
       <NavbarSignedOut />
@@ -54,7 +51,7 @@ const LoginPage = () => {
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="loginPassword" className="mb-3">
+                  <Form.Group controlId="loginPassword">
                     <Form.Control
                       type="password"
                       name="password"
@@ -65,18 +62,19 @@ const LoginPage = () => {
                     />
                   </Form.Group>
 
-                  <Form.Check
-                    type="checkbox"
-                    label="Remember Me"
-                    className="mb-3"
-                    checked={rememberMe}
-                    onChange={handleRememberMe}
-                  />
+                  <Button
+                    variant="link"
+                    className="text-decoration-none mt-1"
+                    href="/reset-password"
+                  >
+                    Forgot Password?
+                  </Button>
 
                   <Button
                     variant="primary"
                     type="submit"
                     className="w-100 mb-3"
+                    onClick={goToCourses}
                   >
                     Log in
                   </Button>
@@ -95,7 +93,7 @@ const LoginPage = () => {
                 </Button>
                 <div className="text-center mt-4">
                   Don't have an account?{" "}
-                  <a href="/signup" className="btn-signUp">
+                  <a href="/sign-up" className="btn-signUp">
                     Sign Up
                   </a>
                 </div>

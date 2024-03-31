@@ -2,23 +2,28 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import "../Style/RegistrationAndLogin.css";
+import { useNavigate } from "react-router-dom";
 
 const ResetPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
+  const navigate = useNavigate();
 
-  const mockEmailCheck = "valid@example.com";
+  const mockEmailCheck = "example@example.com";
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (email === mockEmailCheck) {
       setEmailValid(true);
-      // sending reset password instructions
     } else {
       setEmailValid(false);
     }
     setEmailSubmitted(true);
+  };
+
+  const goToSuccess = () => {
+    navigate("/login");
   };
 
   return (
@@ -35,14 +40,23 @@ const ResetPasswordPage = () => {
             <form className="email-form" onSubmit={handleSubmit}>
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email (For cheking type example@example.com)"
                 className="email-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <button type="submit" className="submit-btn">
-                Submit
-              </button>
+              {emailSubmitted &&
+                (emailValid ? (
+                  <button
+                    type="submit"
+                    className="submit-btn"
+                    onClick={goToSuccess}
+                  >
+                    Submit
+                  </button>
+                ) : (
+                  <div></div>
+                ))}
             </form>
             {emailSubmitted &&
               (emailValid ? (

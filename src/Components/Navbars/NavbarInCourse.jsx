@@ -15,8 +15,8 @@ import { FaBookOpen, FaHeart, FaRegClock } from "react-icons/fa";
 
 const mockCourses = [
   { id: 1, title: "C#", img: "/Csharp.svg" },
-  { id: 2, title: "C++", img: "/Csharp.svg" },
-  { id: 3, title: "Python", img: "/Csharp.svg" },
+  { id: 2, title: "C#", img: "/Csharp.svg" },
+  { id: 3, title: "C#", img: "/Csharp.svg" },
 ];
 
 const MAX_HEARTS = 5;
@@ -65,7 +65,7 @@ const NavbarInCourse = () => {
     <Popover id="popover-courses" className="course-popover">
       <Popover.Body>
         <div className="course-menu">
-          <Link to="/all-courses" className="course-menu-item">
+          <Link to="/allcourses" className="course-menu-item">
             <FaBookOpen className="course-icon" /> All Courses
           </Link>
           {mockCourses.map((course) => (
@@ -143,34 +143,36 @@ const NavbarInCourse = () => {
   return (
     <Navbar bg="white" expand="lg" className="py-2">
       <Container>
-        <Navbar.Brand href="">
-          <img
-            src="/quickskill2.png"
-            alt="Quickskill"
-            className="d-inline-block align-top"
-            style={{ width: "auto", height: "50px" }}
-          />
-        </Navbar.Brand>
-        <OverlayTrigger
-          trigger="click"
-          placement="bottom"
-          overlay={courseListPopover}
-          rootClose
-        >
-          <span
-            onClick={() => setShowCoursesMenu(!showCoursesMenu)}
-            style={{ cursor: "pointer" }}
+        <div className="left-navbar">
+          <Navbar.Brand href="/allcourses">
+            <img
+              src="/quickskill2.png"
+              alt="Quickskill"
+              className="d-inline-block align-top"
+              style={{ width: "auto", height: "50px" }}
+            />
+          </Navbar.Brand>
+          <OverlayTrigger
+            trigger="click"
+            placement="bottom"
+            overlay={courseListPopover}
+            rootClose
           >
-            <FaArrowDownWideShort size="1.5em" className="course-icon" />
-          </span>
-        </OverlayTrigger>
+            <span
+              onClick={() => setShowCoursesMenu(!showCoursesMenu)}
+              style={{ cursor: "pointer" }}
+            >
+              <FaArrowDownWideShort size="1.5em" className="course-icon" />
+            </span>
+          </OverlayTrigger>
+        </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link href="#leaderboard" className="nav-link-lg">
+            <Nav.Link href="/leaderboard" className="nav-link-lg">
               Leaderboard
             </Nav.Link>
-            <Nav.Link href="#community" className="nav-link-lg">
+            <Nav.Link href="/community" className="nav-link-lg">
               Community
             </Nav.Link>
           </Nav>

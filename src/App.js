@@ -12,7 +12,7 @@ import LoginPage from "./Components/RegistrationAndLogin/LoginPage";
 import CoursesProgress from "./Components/Profile/ProfilePage/CoursesProgress";
 import Certificates from "./Components/Profile/ProfilePage/Certificates";
 import BadgesSlider from "./Components/Profile/ProfilePage/BadgesSlider";
-import ProfilePage from "./Components/Profile/ProfilePageFromOtherPersonView/ProfilePage";
+import ProfilePage from "./Components/Profile/ProfilePage/ProfilePage";
 import Sidebar from "./Components/Settings/Sidebar";
 import ProfileSettings from "./Components/Settings/ProfileSettings";
 import DeleteSettings from "./Components/Settings/DeleteSettings";
@@ -31,10 +31,15 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<CommunityPage />} />
-        <Route path="/AllCourses" element={<CoursesPage />} />
-        <Route path="/PresentationPage" element={<PresentationPage />} />
+        <Route path="/" element={<PresentationPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/sign-up" element={<RegistrationPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/allCourses" element={<CoursesPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/courses/*" element={<CoursePage />} />
         <Route path="/Leaderboard" element={<LeaderboardPage />} />
+        <Route path="/Community" element={<CommunityPage />} />
 
         <Route
           path="/settings"
@@ -54,7 +59,6 @@ function App() {
           }
         />
 
-        <Route path="/courses/1" element={<CSharpCoursesPage />} />
         <Route path="/certificate/:courseId" element={<CertificatePage />} />
         <Route path="*" element={<Error />} />
       </Routes>
