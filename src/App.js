@@ -25,12 +25,13 @@ import ResetPasswordPage from "./Components/RegistrationAndLogin/ResetPassword";
 import CreateNewPasswordPage from "./Components/RegistrationAndLogin/CreateNewPasswordPage";
 import PresentationPage from "./Components/Home/PresentationPage";
 import LeaderboardPage from "./Components/Leaderboard/LeaderboardPage";
+import CommunityPage from "./Components/Community/CommunityPage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<CoursePage />} />
+        <Route path="/" element={<CommunityPage />} />
         <Route path="/AllCourses" element={<CoursesPage />} />
         <Route path="/PresentationPage" element={<PresentationPage />} />
         <Route path="/Leaderboard" element={<LeaderboardPage />} />
