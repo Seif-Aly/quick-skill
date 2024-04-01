@@ -5,7 +5,6 @@ import {
   Col,
   Button,
   Form,
-  Card,
   Dropdown,
   Modal,
 } from "react-bootstrap";
@@ -104,10 +103,14 @@ const CommunityPage = () => {
         <Row className="mb-3 justify-content-start">
           <h1 className="mt-4">Follow us in our channels </h1>
           <Col md="auto">
-            <Button variant="primary">Discord Channel</Button>
+            <Button variant="primary" className="mt-1">
+              Discord Channel
+            </Button>
           </Col>
           <Col md="auto">
-            <Button variant="primary">Telegram Channel</Button>
+            <Button variant="primary" className="mt-1">
+              Telegram Channel
+            </Button>
           </Col>
         </Row>
 
@@ -117,12 +120,12 @@ const CommunityPage = () => {
             <Button
               variant="primary"
               onClick={handleShow}
-              className="new-question-btn"
+              className="new-question-btn mt-2"
             >
               + NEW QUESTION
             </Button>
             <NewQuestionModal show={showModal} handleClose={handleClose} />
-            <Dropdown onSelect={handleSortChange} className="mb-3">
+            <Dropdown onSelect={handleSortChange} className="mb-3 mt-1">
               <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                 {sortOption === "trend" ? "In trend" : "Recent"}
               </Dropdown.Toggle>

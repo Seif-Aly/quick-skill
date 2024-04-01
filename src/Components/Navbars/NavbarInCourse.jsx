@@ -20,7 +20,7 @@ const mockCourses = [
 ];
 
 const MAX_HEARTS = 5;
-const HEART_REFILL_TIME = 1 * 60 * 1000; // 1 minute
+const HEART_REFILL_TIME = 1 * 10 * 1000; // 10 sec
 
 const NavbarInCourse = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -50,16 +50,25 @@ const NavbarInCourse = () => {
 
     const interval = setInterval(() => {
       setNextHeartTimer((prevTime) => {
-        if (prevTime <= 0 && hearts < MAX_HEARTS) {
-          setHearts((h) => h + 1);
-          return HEART_REFILL_TIME; // Reset timer
+        if (prevTime <= 0) {
+          setHearts((currentHearts) => {
+            if (currentHearts < MAX_HEARTS) {
+              setUserData((userData) => ({
+                ...userData,
+                hearts: userData.hearts + 1,
+              }));
+              return currentHearts + 1;
+            }
+            return currentHearts;
+          });
+          return HEART_REFILL_TIME;
         }
-        return prevTime - 1000; // Decrement timer by 1 second
+        return prevTime - 1000;
       });
     }, 1000);
 
     return () => clearInterval(interval); // Clear interval on component unmount
-  }, [hearts]);
+  }, []);
 
   const courseListPopover = (
     <Popover id="popover-courses" className="course-popover">
