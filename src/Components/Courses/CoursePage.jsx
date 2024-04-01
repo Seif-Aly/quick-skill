@@ -18,13 +18,19 @@ const CoursePage = () => {
         title: "Overview",
         lessons: [
           {
-            name: "Your First Lesson",
+            name: "Lecture",
             description: "An introduction to C# basics.",
+            page: "/lecture",
           },
-          { name: "Output", description: "How to output data to the console." },
           {
-            name: "Variables",
+            name: "Seminar",
+            description: "How to output data to the console.",
+            page: "/seminar",
+          },
+          {
+            name: "Seminar",
             description: "Understanding variables and data types.",
+            page: "/seminar",
           },
         ],
       },
@@ -119,7 +125,13 @@ const CoursePage = () => {
               <Accordion.Body>
                 {section.lessons.map((lesson, lessonIndex) => (
                   <div key={lessonIndex} className="lesson-item">
-                    <strong>{lesson.name}</strong>
+                    <strong>
+                      {lesson.page ? (
+                        <Link to={lesson.page}>{lesson.name}</Link>
+                      ) : (
+                        lesson.name
+                      )}
+                    </strong>
                     <p className="lesson-description">{lesson.description}</p>
                   </div>
                 ))}
@@ -138,7 +150,9 @@ const CoursePage = () => {
                 />
               </div>
               <div className="cert-info">
-                <h2>Certification</h2>
+                <h2>
+                  <Link to={"/certificate/1"}>Certification</Link>
+                </h2>
                 <p>
                   We are happy to present your certificate to you for completing
                   this course.

@@ -96,7 +96,7 @@ const NavbarInCourse = () => {
           <Link to="/support" className="profile-menu-item">
             Support ❓
           </Link>
-          <Link to="/logout" className="profile-menu-item">
+          <Link to="/login" className="profile-menu-item">
             Logout 🚪
           </Link>
         </div>

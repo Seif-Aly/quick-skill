@@ -23,7 +23,7 @@ const ResetPasswordPage = () => {
   };
 
   const goToSuccess = () => {
-    navigate("/login");
+    navigate("/create-new-password");
   };
 
   return (
