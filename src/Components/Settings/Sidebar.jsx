@@ -7,24 +7,28 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar-title">Settings 🛠️</div>
       <NavLink
-        exact
         to="/settings/profile"
-        activeClassName="active"
-        className="sidebar-link"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active" : "sidebar-link"
+        }
       >
         Profile
       </NavLink>
       <NavLink
         to="/settings/goals"
-        activeClassName="active"
-        className="sidebar-link"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active" : "sidebar-link"
+        }
       >
         Goal settings
       </NavLink>
       <NavLink
         to="/settings/delete"
-        activeClassName="active"
-        className="sidebar-link delete-link"
+        className={({ isActive }) =>
+          isActive
+            ? "sidebar-link active delete-link"
+            : "sidebar-link delete-link"
+        }
       >
         Delete account
       </NavLink>

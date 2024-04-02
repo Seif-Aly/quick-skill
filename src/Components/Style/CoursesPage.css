@@ -59,8 +59,7 @@
   border-radius: 0.5rem;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
-  height: 10em;
-  padding: 0;
+  overflow: hidden;
 }
 
 .course-image-container {
@@ -112,6 +111,8 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 1em;
+  margin-left: -1em;
+  margin-right: -1em;
 }
 
 .course-card:hover {
@@ -233,4 +234,51 @@
 .filter-group .btn:active {
   background-color: #6f42c1 !important;
   color: white !important;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5em;
+  }
+
+  .filters .btn,
+  .filters .form-control {
+    font-size: 0.8em;
+  }
+
+  .course-card {
+    height: auto;
+  }
+
+  .course-image {
+    height: 200px;
+  }
+
+  .card-body {
+    padding: 0.5em;
+  }
+
+  .card-logo-title {
+    padding: 0.3em;
+  }
+
+  .course-details {
+    font-size: 0.8em;
+    padding: 0.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters .search-bar {
+    flex-direction: column;
+  }
+
+  .filters .form-control {
+    padding-right: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .filters .btn {
+    width: 100%;
+  }
 }

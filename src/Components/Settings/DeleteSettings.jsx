@@ -11,16 +11,34 @@ import {
 import Sidebar from "./Sidebar";
 import NavbarSignedIn from "../Navbars/NavbarSignedIn";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { deleteUser, logoutUser } from "../../Store/actions";
+import { useNavigate } from "react-router-dom";
 
 const DeleteSettings = () => {
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/login");
+  };
 
-  const handlePasswordChange = (event) => setPassword(event.target.value);
+  // const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleCheckboxChange = (event) => setIsChecked(event.target.checked);
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted: ", { password, isChecked });
+    if (isChecked) {
+      dispatch(deleteUser()).then((response) => {
+        if (response.success) {
+          dispatch(logoutUser());
+          window.location.href = "/login";
+        } else {
+          alert("Failed to delete account: " + response.message);
+        }
+      });
+    }
   };
 
   return (
@@ -50,7 +68,7 @@ const DeleteSettings = () => {
               Otherwise, enter your password and confirm deletion below
             </p>
             <Form onSubmit={handleSubmit} className="delete-form">
-              <Form.Group controlId="deletePassword">
+              {/* <Form.Group controlId="deletePassword">
                 <Form.Label>Password</Form.Label>
                 <FormControl
                   type="password"
@@ -58,7 +76,7 @@ const DeleteSettings = () => {
                   value={password}
                   onChange={handlePasswordChange}
                 />
-              </Form.Group>
+              </Form.Group> */}
               <Form.Group
                 controlId="deleteCheckbox"
                 className="delete-checkbox"
@@ -75,6 +93,7 @@ const DeleteSettings = () => {
                 type="submit"
                 disabled={!isChecked}
                 className="text-center delete-btn"
+                // onClick={handleLogout}
               >
                 Delete
               </Button>

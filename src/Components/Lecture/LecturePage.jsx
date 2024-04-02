@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Accordion, Button } from "react-bootstrap";
 import { BsArrowRight, BsFillHouseFill } from "react-icons/bs";
 import NavbarSignedIn from "../Navbars/NavbarSignedIn";
 import "../Style/LecturePage.css";
-
-const mockData = {
-  header: "Strings",
-  subHeader: "Learn basic features of string in C#",
-  videoUrl: "https://www.youtube.com/embed/1itn-TSR4o8?si=UQvQ_feDV4X-XVk5",
-  summary:
-    "No writer who knows the great writers who did not receive the Prize can accept it other than with humility...",
-  transcript: "Full transcript goes here...",
-  notes: "Personal notes and annotations go here...",
-};
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLectureById, summarizeLecture } from "../../Store/actions";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LecturePage = () => {
   const [activeKey, setActiveKey] = useState(["0", "1", "2"]);
+  const dispatch = useDispatch();
+  const { lectureId } = useParams();
+  const {
+    lectureData,
+    loadingLecture,
+    lectureError,
+    summary,
+    loadingSummarization,
+    errorSummarization,
+  } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    if (lectureId) {
+      dispatch(fetchLectureById(lectureId));
+    }
+  }, [dispatch, lectureId]);
+
+  const handleSummarizeClick = () => {
+    dispatch(summarizeLecture(lectureId));
+  };
+
+  // Handle active key for accordion
   const toggleActiveKey = (key) => {
     setActiveKey((prevActiveKey) =>
       prevActiveKey.includes(key)
@@ -25,20 +40,24 @@ const LecturePage = () => {
     );
   };
 
+  if (loadingLecture) return <div>Loading...</div>;
+  if (lectureError) return <div>Error: {lectureError}</div>;
+  if (!lectureData) return <div>No lecture data available</div>;
+
   return (
     <>
       <NavbarSignedIn />
       <Container className="lecture-page-container">
         {/* Header Section */}
         <Col xs={10} className="header-section text-left">
-          <h1>{mockData.header}</h1>
-          <h2>{mockData.subHeader}</h2>
+          <h1>{lectureData.name}</h1>
+          <h2>{lectureData.description}</h2>
         </Col>
         <Row className="justify-content-between align-items-center mt-3">
           <Col xs={1}>
-            <button>
-              <BsFillHouseFill size={30} className="home-icon " />
-            </button>
+            <Link to="/" className="home-icon-link">
+              <BsFillHouseFill size={30} className="home-icon" />
+            </Link>
           </Col>
 
           <Col xs={1}>
@@ -55,7 +74,7 @@ const LecturePage = () => {
             <div className="embed-responsive embed-responsive-16by9">
               <iframe
                 className="embed-responsive-item"
-                src={mockData.videoUrl}
+                src={lectureData.video_link}
                 allowFullScreen
                 title="Video Lecture"
               ></iframe>
@@ -71,10 +90,16 @@ const LecturePage = () => {
             </Accordion.Header>
             <div>
               <Accordion.Body>
-                {mockData.summary}
+                {loadingSummarization && <div>Loading summary...</div>}
+                {errorSummarization && <div>Error: {errorSummarization}</div>}
+                {summary && <div>{summary}</div>}
                 <div className="d-flex justify-content-center">
-                  <Button variant="primary" className="mt-3 summarize-btn">
-                    Summarize
+                  <Button
+                    variant="primary"
+                    className="mt-3 summarize-btn"
+                    onClick={handleSummarizeClick}
+                  >
+                    Summarize By <b>AI</b>
                   </Button>
                 </div>
               </Accordion.Body>
@@ -85,7 +110,7 @@ const LecturePage = () => {
               Transcript
             </Accordion.Header>
             <Accordion.Body style={{ overflowY: "scroll", maxHeight: "200px" }}>
-              {mockData.transcript}
+              {lectureData.lecture_transcript}
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="2">
@@ -93,7 +118,7 @@ const LecturePage = () => {
               Notes
             </Accordion.Header>
             <Accordion.Body style={{ overflowY: "scroll", maxHeight: "200px" }}>
-              {mockData.notes}
+              {lectureData.lecture_notes}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

@@ -6,14 +6,14 @@ import "../Style/SearchPage.css";
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const handleBack = () => {
     navigate(-1);
   };
 
   const showMoreUsers = () => {
-    setVisibleCount((prevCount) => prevCount + 6);
+    setVisibleCount((prevCount) => prevCount + 4);
   };
 
   const userRecommendations = [

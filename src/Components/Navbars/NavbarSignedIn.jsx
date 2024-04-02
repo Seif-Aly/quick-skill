@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Navbar,
   Container,
@@ -12,38 +14,63 @@ import { Link } from "react-router-dom";
 import "../Style/Navbars.css";
 import { FaArrowDownWideShort } from "react-icons/fa6";
 import { FaBookOpen, FaHeart, FaRegClock } from "react-icons/fa";
+import {
+  fetchMyCourses,
+  logoutUser,
+  fetchCurrentUser,
+} from "../../Store/actions";
 
 const NavbarSignedIn = () => {
   const [showCoursesMenu, setShowCoursesMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-
-  const userData = {
-    image: "/prof.png",
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/login");
   };
+  const { userCourses, loading, error, user } = useSelector(
+    (state) => state.auth
+  );
+  useEffect(() => {
+    if (!user) {
+      dispatch(fetchMyCourses());
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, user]);
 
-  const mockCourses = [
-    { id: 1, title: "C#", img: "/Csharp.svg" },
-    { id: 2, title: "C#", img: "/Csharp.svg" },
-    { id: 3, title: "c#", img: "/Csharp.svg" },
-  ];
+  if (loading) {
+    return <div>Loading your courses...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching courses: {error}</div>;
+  }
 
   const courseListPopover = (
     <Popover id="popover-courses" className="course-popover">
       <Popover.Body>
         <div className="course-menu">
-          <Link to="/allcourses" className="course-menu-item">
+          <Link to="/" className="course-menu-item">
             <FaBookOpen className="course-icon" /> All Courses
           </Link>
-          {mockCourses.map((course) => (
-            <Link
-              key={course.id}
-              to={`/courses/${course.id}`}
-              className="course-menu-item"
-            >
-              <img src={course.img} alt={course.title} className="course-img" />{" "}
-              {course.title}
-            </Link>
-          ))}
+          {userCourses &&
+            userCourses.map((course) => (
+              <Link
+                key={course.course_id}
+                to={`/course/${course.course_id}`}
+                className="course-menu-item"
+              >
+                {course.media && course.media.length > 0 && (
+                  <img
+                    src={course.media[1].url}
+                    alt={course.media[1].name}
+                    className="course-img"
+                  />
+                )}{" "}
+                {course.course_name}
+              </Link>
+            ))}
         </div>
       </Popover.Body>
     </Popover>
@@ -59,9 +86,9 @@ const NavbarSignedIn = () => {
           <Link to="/settings" className="profile-menu-item">
             Settings ⚙️
           </Link>
-          <Link to="/login" className="profile-menu-item">
+          <span className="profile-menu-item" onClick={handleLogout}>
             Logout 🚪
-          </Link>
+          </span>
         </div>
       </Popover.Body>
     </Popover>
@@ -71,7 +98,7 @@ const NavbarSignedIn = () => {
     <Navbar bg="white" expand="lg" className="py-2">
       <Container>
         <div className="left-navbar">
-          <Navbar.Brand href="/allcourses">
+          <Navbar.Brand href="/">
             <img
               src="/quickskill2.png"
               alt="Quickskill"
@@ -106,7 +133,7 @@ const NavbarSignedIn = () => {
                 rootClose
               >
                 <Image
-                  src={userData.image}
+                  src={user && user.photo}
                   alt="Profile"
                   roundedCircle
                   style={{ width: "40px", height: "40px", cursor: "pointer" }}

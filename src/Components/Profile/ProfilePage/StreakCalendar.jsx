@@ -16,10 +16,10 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 // Mock data for streaks and freezes
 const streakData = {
-  "2024-03-07": "streak",
-  "2024-03-08": "streak",
-  "2024-03-06": "freeze",
-  "2024-03-16": "freeze",
+  "2024-04-11": "streak",
+  "2024-04-12": "streak",
+  "2024-04-13": "freeze",
+  "2024-04-14": "freeze",
 };
 
 const StreakCalendar = () => {
@@ -27,8 +27,8 @@ const StreakCalendar = () => {
 
   const startDay = startOfWeek(startOfMonth(currentDate));
   const endDay = endOfWeek(endOfMonth(currentDate));
-  const currentStreak = 8;
-  const maxStreak = 234;
+  const currentStreak = 4;
+  const maxStreak = 18;
 
   const days = eachDayOfInterval({ start: startDay, end: endDay });
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Navbar,
   Container,
@@ -6,87 +7,106 @@ import {
   OverlayTrigger,
   Popover,
   Image,
-  Dropdown,
 } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import "../Style/Navbars.css";
 import { FaArrowDownWideShort } from "react-icons/fa6";
 import { FaBookOpen, FaHeart, FaRegClock } from "react-icons/fa";
-
-const mockCourses = [
-  { id: 1, title: "C#", img: "/Csharp.svg" },
-  { id: 2, title: "C#", img: "/Csharp.svg" },
-  { id: 3, title: "C#", img: "/Csharp.svg" },
-];
+import {
+  fetchMyCourses,
+  fetchCourseResources,
+  logoutUser,
+  fetchCurrentUser,
+} from "../../Store/actions";
+import { useParams, useNavigate } from "react-router-dom";
 
 const MAX_HEARTS = 5;
-const HEART_REFILL_TIME = 1 * 10 * 1000; // 10 sec
+const HEART_REFILL_TIME = 1 * 10 * 1000;
 
 const NavbarInCourse = () => {
+  const { courseId } = useParams();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showCoursesMenu, setShowCoursesMenu] = useState(false);
   const [hearts, setHearts] = useState(0);
   const [nextHeartTimer, setNextHeartTimer] = useState(HEART_REFILL_TIME);
-  const [heartRefillTimer, setHeartRefillTimer] = useState(null);
-
-  const [userData, setUserData] = useState({
-    hearts: 0,
-    xp: 0,
-    currency: 0,
-    image: "/prof.png",
-  });
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/login");
+  };
+  const { userCourses, loading, error, courseResources, user } = useSelector(
+    (state) => state.auth
+  );
   useEffect(() => {
-    // Mock fetching user data
-    const apiResponse = {
-      hearts: 3,
-      xp: 20,
-      currency: 500,
-      image: "/prof.png",
-    };
-    setUserData(apiResponse);
-    setHearts(apiResponse.hearts);
-    setHeartRefillTimer(new Date(Date.now() + HEART_REFILL_TIME));
+    if (courseId) {
+      dispatch(fetchCourseResources(courseId));
+      dispatch(fetchMyCourses());
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, courseId]);
 
-    const interval = setInterval(() => {
-      setNextHeartTimer((prevTime) => {
-        if (prevTime <= 0) {
-          setHearts((currentHearts) => {
-            if (currentHearts < MAX_HEARTS) {
-              setUserData((userData) => ({
-                ...userData,
-                hearts: userData.hearts + 1,
-              }));
-              return currentHearts + 1;
-            }
-            return currentHearts;
-          });
-          return HEART_REFILL_TIME;
-        }
-        return prevTime - 1000;
-      });
-    }, 1000);
+  // useEffect(() => {
+  //   setUserData(apiResponse);
+  //   setHearts(apiResponse.hearts);
+  //   setHeartRefillTimer(new Date(Date.now() + HEART_REFILL_TIME));
 
-    return () => clearInterval(interval); // Clear interval on component unmount
-  }, []);
+  //   const interval = setInterval(() => {
+  //     setNextHeartTimer((prevTime) => {
+  //       if (prevTime <= 0) {
+  //         setHearts((currentHearts) => {
+  //           if (currentHearts < MAX_HEARTS) {
+  //             setUserData((userData) => ({
+  //               ...userData,
+  //               hearts: userData.hearts + 1,
+  //             }));
+  //             return currentHearts + 1;
+  //           }
+  //           return currentHearts;
+  //         });
+  //         return HEART_REFILL_TIME;
+  //       }
+  //       return prevTime - 1000;
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(interval); // Clear interval on component unmount
+  // }, []);
+
+  if (loading) {
+    return <div>Loading your courses...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching courses: {error}</div>;
+  }
+  if (!courseResources) return <div>Loading resources...</div>;
 
   const courseListPopover = (
     <Popover id="popover-courses" className="course-popover">
       <Popover.Body>
         <div className="course-menu">
-          <Link to="/allcourses" className="course-menu-item">
+          <Link to="/" className="course-menu-item">
             <FaBookOpen className="course-icon" /> All Courses
           </Link>
-          {mockCourses.map((course) => (
-            <Link
-              key={course.id}
-              to={`/courses/${course.id}`}
-              className="course-menu-item"
-            >
-              <img src={course.img} alt={course.title} className="course-img" />{" "}
-              {course.title}
-            </Link>
-          ))}
+          {userCourses &&
+            userCourses.map((course) => (
+              <Link
+                key={course.course_id}
+                to={`/course/${course.course_id}`}
+                className="course-menu-item"
+              >
+                {course.media && course.media.length > 0 && (
+                  <img
+                    src={course.media[1].url}
+                    alt={course.media[1].name}
+                    className="course-img"
+                  />
+                )}{" "}
+                {course.course_name}
+              </Link>
+            ))}
         </div>
       </Popover.Body>
     </Popover>
@@ -102,9 +122,9 @@ const NavbarInCourse = () => {
           <Link to="/settings" className="profile-menu-item">
             Settings ⚙️
           </Link>
-          <Link to="/login" className="profile-menu-item">
+          <span className="profile-menu-item" onClick={handleLogout}>
             Logout 🚪
-          </Link>
+          </span>
         </div>
       </Popover.Body>
     </Popover>
@@ -150,7 +170,7 @@ const NavbarInCourse = () => {
     <Navbar bg="white" expand="lg" className="py-2">
       <Container>
         <div className="left-navbar">
-          <Navbar.Brand href="/allcourses">
+          <Navbar.Brand href="/">
             <img
               src="/quickskill2.png"
               alt="Quickskill"
@@ -175,19 +195,19 @@ const NavbarInCourse = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link href="/leaderboard" className="nav-link-lg">
-              Leaderboard
-            </Nav.Link>
-            <Nav.Link href="/community" className="nav-link-lg">
-              Community
-            </Nav.Link>
+            <LinkContainer to={`/course/${courseId}/leaderboard`}>
+              <Nav.Link className="nav-link-lg">Leaderboard</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to={`/course/${courseId}/community`}>
+              <Nav.Link className="nav-link-lg">Community</Nav.Link>
+            </LinkContainer>
           </Nav>
           <Nav>
             <div className="d-flex align-items-center">
               <img src="/fire.svg" alt="XP" className="icon22" />
-              <span className="mx-2">{userData.xp}</span>
+              <span className="mx-2">{courseResources.streak}</span>
               <img src="/crystal.svg" alt="Currency" className="icon22" />{" "}
-              <span className="mx-2">{userData.currency}</span>
+              <span className="mx-2">{courseResources.currency}</span>
               <OverlayTrigger
                 trigger="click"
                 placement="bottom"
@@ -197,7 +217,7 @@ const NavbarInCourse = () => {
               >
                 <span style={{ cursor: "pointer" }} className="heart-cont">
                   <FaHeart color="red" className="heart-icn" />
-                  {userData.hearts}
+                  {courseResources.hearts}
                 </span>
               </OverlayTrigger>
               <OverlayTrigger
@@ -209,7 +229,7 @@ const NavbarInCourse = () => {
                 rootClose
               >
                 <Image
-                  src={userData.image}
+                  src={user && user.photo}
                   alt="Profile"
                   roundedCircle
                   style={{ width: "40px", height: "40px", cursor: "pointer" }}

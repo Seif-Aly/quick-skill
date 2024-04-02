@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import CertificatePage from "./Components/Courses/CertificatePage";
@@ -20,58 +20,151 @@ import LecturePage from "./Components/Lecture/LecturePage";
 import QuestionPage from "./Components/Seminar/QuestionPage";
 import ResetPasswordPage from "./Components/RegistrationAndLogin/ResetPassword";
 import CreateNewPasswordPage from "./Components/RegistrationAndLogin/CreateNewPasswordPage";
-import PresentationPage from "./Components/Home/PresentationPage";
 import LeaderboardPage from "./Components/Leaderboard/LeaderboardPage";
 import CommunityPage from "./Components/Community/CommunityPage";
+import ProtectedRoute from "./Store/ProtectedRoute";
+import RedirectIfAuthenticated from "./Store/RedirectIfAuthenticated";
+import Main from "./Components/Main/Main";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<PresentationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/sign-up" element={<RegistrationPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/allCourses" element={<CoursesPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        {/* Public and initial routes */}
+        <Route path="*" element={<Error />} />
+        <Route path="/" element={<Main />} />
         <Route
-          path="/ProfilePageOtherUser"
-          element={<ProfilePageOtherUser />}
+          path="/login"
+          element={
+            <RedirectIfAuthenticated redirectTo="/">
+              <LoginPage />
+            </RedirectIfAuthenticated>
+          }
         />
-        <Route path="/courses/*" element={<CoursePage />} />
-        <Route path="/Leaderboard" element={<LeaderboardPage />} />
-        <Route path="/Community" element={<CommunityPage />} />
-        <Route path="/lecture" element={<LecturePage />} />
-        <Route path="/seminar" element={<QuestionPage />} />
-        <Route path="/search-page" element={<SearchPage />} />
+        <Route
+          path="/sign-up"
+          element={
+            <RedirectIfAuthenticated redirectTo="/">
+              <RegistrationPage />
+            </RedirectIfAuthenticated>
+          }
+        />
         <Route
           path="/create-new-password"
           element={<CreateNewPasswordPage />}
         />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
 
+        {/* Protected routes for signed in users */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <CoursesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/ProfilePageOtherUser"
+          element={
+            <ProtectedRoute>
+              <ProfilePageOtherUser />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/course/:courseId"
+          element={
+            <ProtectedRoute>
+              <CoursePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/course/:courseId/Leaderboard"
+          element={
+            <ProtectedRoute>
+              <LeaderboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/course/:courseId/Community"
+          element={
+            <ProtectedRoute>
+              <CommunityPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/course/:courseId/lecture/:lectureId"
+          element={
+            <ProtectedRoute>
+              <LecturePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/course/:courseId/seminar/:SeminarId"
+          element={
+            <ProtectedRoute>
+              <QuestionPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/search-page"
+          element={
+            <ProtectedRoute>
+              <SearchPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Nested routes for settings */}
         <Route
           path="/settings"
-          element={<Navigate replace to="/settings/profile" />}
+          element={
+            <ProtectedRoute>
+              <Navigate replace to="/settings/profile" />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/settings/*"
           element={
-            <div>
-              <Sidebar />
-              <Routes>
-                <Route path="profile" element={<ProfileSettings />} />
-                <Route path="goals" element={<GoalSettings />} />{" "}
-                <Route path="delete" element={<DeleteSettings />} />
-              </Routes>
-            </div>
+            <ProtectedRoute>
+              <div>
+                <Sidebar />
+                <Routes>
+                  <Route path="profile" element={<ProfileSettings />} />
+                  <Route path="goals" element={<GoalSettings />} />
+                  <Route path="delete" element={<DeleteSettings />} />
+                </Routes>
+              </div>
+            </ProtectedRoute>
           }
         />
 
-        <Route path="/certificate/:courseId" element={<CertificatePage />} />
-        <Route path="*" element={<Error />} />
+        {/* Additional routes */}
+        <Route
+          path="/certificate/:courseId"
+          element={
+            <ProtectedRoute>
+              <CertificatePage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
 }
-
 export default App;

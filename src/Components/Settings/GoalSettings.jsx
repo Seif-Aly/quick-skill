@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setNewGoal, fetchCurrentUser, setGoalDays } from "../../Store/actions";
 import "../Style/Settings.css";
 import {
   FaRobot,
@@ -25,15 +27,47 @@ import NavbarSignedIn from "../Navbars/NavbarSignedIn";
 
 const GoalSettings = () => {
   const [goal, setGoal] = useState("");
+  const dispatch = useDispatch();
   const [customGoal, setCustomGoal] = useState("");
   const [studyDays, setStudyDays] = useState(4);
   const [emailNotification, setEmailNotification] = useState(true);
+  const { user, error, loading } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user && user.goalText && user.goalDays) {
+      const isPresetGoal = ["job", "raise", "skill", "school", "fun"].includes(
+        user.goalText
+      );
+      if (isPresetGoal) {
+        setGoal(user.goalText);
+      } else {
+        setGoal("custom");
+        setCustomGoal(user.goalText);
+      }
+      setStudyDays(user.goalDays);
+    }
+  }, [user]);
 
   const handleGoalChange = (selectedGoal) => {
     if (selectedGoal !== "custom") {
       setGoal(selectedGoal);
       setCustomGoal("");
+    } else {
+      setGoal("");
     }
+  };
+
+  const saveGoal = () => {
+    const goalToSet = goal === "custom" ? customGoal : goal;
+    dispatch(setNewGoal(goalToSet));
+  };
+
+  const saveStudyDays = () => {
+    dispatch(setGoalDays(studyDays));
   };
 
   const handleCustomGoalInput = (e) => {
@@ -48,6 +82,15 @@ const GoalSettings = () => {
   const handleEmailNotificationChange = () => {
     setEmailNotification(!emailNotification);
   };
+
+  if (loading) {
+    return <div>Loading your courses...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching courses: {error}</div>;
+  }
+  if (loading) return <div>Loading resources...</div>;
 
   const renderEmailReminderToggle = () => {
     return (
@@ -154,7 +197,15 @@ const GoalSettings = () => {
                 </div>
               </div>
               {renderEmailReminderToggle()}
-              <button className="save-goal-button">Save goal</button>
+              <button
+                className="save-goal-button"
+                onClick={() => {
+                  saveGoal();
+                  saveStudyDays();
+                }}
+              >
+                Save goal
+              </button>
             </div>
           </Col>
         </Row>

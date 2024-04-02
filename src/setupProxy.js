@@ -4,10 +4,8 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "https://localhost:8081/api/auth/register",
+      target: "https://localhost:8081",
       changeOrigin: true,
-      secure: false,
-      pathRewrite: { "^/api": "" },
     })
   );
 };

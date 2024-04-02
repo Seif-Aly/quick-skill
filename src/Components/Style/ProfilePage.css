@@ -88,6 +88,7 @@
 .course-title {
   flex-grow: 1;
   margin-left: 10px;
+  margin-top: 0.5em;
 }
 
 .course-status {
@@ -112,6 +113,9 @@
   border: solid #6f42c1;
 }
 
+.crs-title {
+  margin-top: 1em;
+}
 .btn-cp:hover,
 .btn-cp:focus {
   background-color: #6f42c1 !important;
@@ -181,6 +185,7 @@
 
 .certificate-title {
   color: #000;
+  margin-left: 2em;
 }
 
 .streak-calendar-container {

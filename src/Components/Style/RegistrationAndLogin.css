@@ -81,6 +81,8 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   height: 26em;
+  height: auto;
+  padding: 20px;
 }
 
 .reset-password-form h2 {
@@ -323,4 +325,47 @@
   background-color: #6f42c1;
   margin: 8px auto;
   width: 80%;
+}
+
+@media (max-width: 768px) {
+  .nav-link-lg {
+    font-size: 1em !important;
+  }
+
+  .card-title,
+  .reset-password-form h2 {
+    font-size: 1.5em;
+  }
+
+  .btn-primary,
+  .btn-facebook,
+  .btn-google,
+  .btn-github {
+    font-size: 0.8em;
+  }
+
+  .email-form {
+    flex-direction: column;
+  }
+
+  .submit-btn,
+  .email-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .alert {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container,
+  .reset-password-form {
+    padding: 10px;
+  }
+
+  .reset-password-form {
+    font-size: 0.9em;
+  }
 }

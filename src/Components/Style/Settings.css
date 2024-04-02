@@ -318,18 +318,17 @@
 }
 
 .toggle-btn:first-child.active {
-  background-color: #28a745; /* green */
+  background-color: #28a745;
 }
 
 .toggle-btn:last-child.active {
-  background-color: #6f42c1; /* purple */
+  background-color: #6f42c1;
 }
 
 .toggle-btn svg {
   margin-left: 5px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .email-reminder-toggle {
     display: block;
@@ -342,7 +341,6 @@
   }
 }
 
-/* Delete Account Section Container */
 .delete-container {
   margin-top: 4em;
   background: #fff;
@@ -352,7 +350,6 @@
   margin-bottom: 20px;
 }
 
-/* Delete Account Titles and List */
 .delete-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -380,18 +377,15 @@
   color: #dc3545;
 }
 
-/* Delete Account Form */
 .delete-form .form-label {
   font-weight: bold;
   color: #495057;
 }
 
-/* Password Input */
 #deletePassword {
   margin-bottom: 1rem;
 }
 
-/* Custom Checkbox */
 .delete-checkbox .form-check-input {
   width: 20px;
   height: 20px;
@@ -406,7 +400,6 @@
   margin-left: 5px;
 }
 
-/* Delete Button */
 .delete-btn {
   width: 20% !important;
   display: flex;
@@ -430,13 +423,11 @@
   color: #6c757d;
 }
 
-/* Ensure the checkbox aligns nicely with the text */
 .delete-checkbox {
   display: flex;
   align-items: center;
 }
 
-/* Alert and Information text styling */
 .delete-alert,
 .delete-info {
   font-size: 0.875rem;
@@ -444,14 +435,23 @@
   color: #6c757d;
 }
 
-/* Style for the alert icon, if you have one */
 .delete-alert-icon {
   color: #dc3545;
   margin-right: 0.5rem;
 }
 
-/* Make sure the Delete button stands out */
 .delete-btn {
   width: 100%;
-  margin-top: 2rem; /* Add some space above the delete button */
+  margin-top: 2rem;
+}
+
+.formtitles {
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+  color: #6f42c1;
+}
+
+.btn-submit-form {
+  margin-top: 3em;
+  margin-bottom: 3em;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Container,
   Row,
@@ -9,6 +9,7 @@ import {
   InputGroup,
   ToggleButton,
   ToggleButtonGroup,
+  Alert,
 } from "react-bootstrap";
 import {
   BarChart,
@@ -20,62 +21,63 @@ import {
 import NavbarSignedIn from "../Navbars/NavbarSignedIn";
 import { Link, useNavigate } from "react-router-dom";
 import "../Style/CoursesPage.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCourses } from "../../Store/actions";
 
 const CoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const clearButtonRef = useRef(null);
-  const navigate = useNavigate();
-
-  // State for each group's selected value
   const [level, setLevel] = useState("");
   const [duration, setDuration] = useState("");
-  const [pricing, setPricing] = useState("");
+  const [course_type, setCourse_type] = useState("");
+  const clearButtonRef = useRef(null);
+  const dispatch = useDispatch();
+  const { courses, loading, error } = useSelector((state) => state.auth);
 
-  const courses = [
-    {
-      id: 1,
-      title: "C#",
-      level: "Beginner",
-      duration: "2 weeks",
-      paid: "free",
-      image: "/prof.png",
-      logo: "/Csharp.svg",
-      description: "Private community for C# developers.",
-    },
-    {
-      id: 2,
-      title: "C#",
-      level: "Beginner",
-      duration: "2 weeks",
-      paid: "paid",
-      image: "/prof.png",
-      logo: "/Csharp.svg",
-      description: "Private community for C++ developers.",
-    },
-    {
-      id: 3,
-      title: "c#",
-      level: "Beginner",
-      duration: "2 weeks",
-      paid: "free",
-      image: "/prof.png",
-      logo: "/Csharp.svg",
-      description: "Private community for python developers.",
-    },
-  ];
+  useEffect(() => {
+    dispatch(fetchCourses());
+  }, [dispatch]);
+
+  const fetchFilteredCourses = () => {
+    dispatch(
+      fetchCourses({
+        search: searchQuery,
+        level,
+        course_type,
+        duration,
+      })
+    );
+  };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
+  useEffect(() => {
+    fetchFilteredCourses();
+  }, [level, duration, course_type]);
+
+  const handleSearch = () => {
+    fetchFilteredCourses();
+  };
+
   const handleClearFilters = () => {
     setLevel("");
     setDuration("");
-    setPricing("");
+    setCourse_type("");
+    setSearchQuery("");
+    fetchFilteredCourses();
     if (clearButtonRef.current) {
       clearButtonRef.current.blur();
     }
   };
+  const isCoursesArray = Array.isArray(courses);
+  if (loading) {
+    return <div>Loading courses...</div>;
+  }
+
+  if (error) {
+    return <Alert variant="danger">{error}</Alert>;
+  }
 
   return (
     <>
@@ -105,73 +107,76 @@ const CoursesPage = () => {
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
-              <InputGroup.Text className="search-icon">
-                <Search />
-              </InputGroup.Text>
+              <Button variant="outline-primary" onClick={handleSearch}>
+                <Search color="#000" />
+              </Button>
+              {/* <InputGroup.Text className="search-icon"> */}
+
+              {/* </InputGroup.Text> */}
             </InputGroup>
 
             {/* Level Filter */}
             <div className="filter-group">
               <ToggleButtonGroup
                 type="radio"
-                name="levels"
+                name="level"
                 className="mt-3"
                 value={level}
                 onChange={(val) => setLevel(val)}
               >
                 <ToggleButton
                   id="tbg-radio-1"
-                  value="beginner"
+                  value="easy"
                   variant="outline-primary"
                   className="flt-btn"
                 >
-                  Beginner
+                  Easy
                 </ToggleButton>
                 <ToggleButton
                   id="tbg-radio-2"
-                  value="intermediate"
+                  value="Medium"
                   variant="outline-primary"
                   className="flt-btn"
                 >
-                  Intermediate
+                  Medium
                 </ToggleButton>
                 <ToggleButton
                   id="tbg-radio-3"
-                  value="advanced"
+                  value="Hard"
                   variant="outline-primary"
                   className="flt-btn"
                 >
-                  Advanced
+                  Hard
                 </ToggleButton>
               </ToggleButtonGroup>
               {"    "}
               {/* Duration Filter */}
               <ToggleButtonGroup
                 type="radio"
-                name="durations"
+                name="duration"
                 className="mt-3"
                 value={duration}
                 onChange={(val) => setDuration(val)}
               >
                 <ToggleButton
                   id="tbg-radio-4"
-                  value="<1"
+                  value="Short"
                   variant="outline-primary"
                   className="flt-btn"
                 >
-                  Less than 1 month
+                  Less than 3 Weeks
                 </ToggleButton>
                 <ToggleButton
                   id="tbg-radio-5"
-                  value="2-3"
+                  value="Medium"
                   variant="outline-primary"
                   className="flt-btn"
                 >
-                  2-3 months
+                  1-3 months
                 </ToggleButton>
                 <ToggleButton
                   id="tbg-radio-6"
-                  value="3+"
+                  value="Long"
                   variant="outline-primary"
                   className="flt-btn"
                 >
@@ -183,14 +188,14 @@ const CoursesPage = () => {
               {/* Pricing Filter */}
               <ToggleButtonGroup
                 type="radio"
-                name="pricing"
+                name="course_type"
                 className="mt-3 tg-bt"
-                value={pricing}
-                onChange={(val) => setPricing(val)}
+                value={course_type}
+                onChange={(val) => setCourse_type(val)}
               >
                 <ToggleButton
                   id="tbg-radio-7"
-                  value="free"
+                  value="FR"
                   variant="outline-primary"
                   className="flt-btn"
                 >
@@ -198,7 +203,7 @@ const CoursesPage = () => {
                 </ToggleButton>
                 <ToggleButton
                   id="tbg-radio-8"
-                  value="paid"
+                  value="PD"
                   variant="outline-primary"
                   className="flt-btn"
                 >
@@ -211,44 +216,58 @@ const CoursesPage = () => {
 
         {/* Course Cards */}
         <Row>
-          {courses.map((course) => (
-            <Col md={4} key={course.id} className="mb-4">
-              <Card className="course-card">
-                <Link to={`/courses/${course.id}`} className="card-link">
-                  <div className="course-image-container">
-                    <img
-                      src={course.image}
-                      className="course-image"
-                      alt={course.title}
-                    />
-                    <div className="card-logo-title">
-                      <img
-                        src={course.logo}
-                        className="csharp-logo"
-                        alt="logo"
-                      />
-                      <Card.Title className="card-title">
-                        {course.title}
-                      </Card.Title>
+          {isCoursesArray &&
+            courses.map((course) => (
+              <Col md={4} key={course.course_id} className="mb-4">
+                <Card className="course-card">
+                  <Link
+                    to={`/course/${course.course_id}`}
+                    className="card-link"
+                  >
+                    <div className="course-image-container">
+                      {course.media && course.media.length > 0 && (
+                        <img
+                          src={course.media[0].url}
+                          className="course-image"
+                          alt={course.course_name}
+                        />
+                      )}
+                      <div className="card-logo-title">
+                        {course.media && course.media.length > 1 && (
+                          <img
+                            src={course.media[1].url}
+                            className="csharp-logo"
+                            alt="Course Logo"
+                          />
+                        )}
+                        <Card.Title className="card-title">
+                          {course.course_name}
+                        </Card.Title>
+                      </div>
                     </div>
-                  </div>
-                  <Card.Body className="card-body">
-                    <Card.Text className="card-text">
-                      {course.description}
-                    </Card.Text>
-                    <div className="course-details">
-                      <PatchCheck className="card-icon" />
-                      <span className="course-level">{course.level}</span>
-                      <Clock className="card-icon" />
-                      <span className="course-duration">{course.duration}</span>
-                      <Tag className="card-icon" />
-                      <span className="course-paid">{course.paid}</span>
-                    </div>
-                  </Card.Body>
-                </Link>
-              </Card>
-            </Col>
-          ))}
+                    <Card.Body className="card-body">
+                      <Card.Text className="card-text">
+                        {course.course_description}
+                      </Card.Text>
+                      <div className="course-details">
+                        <PatchCheck className="card-icon" />
+                        <span className="course-level">
+                          {course.difficulty}
+                        </span>
+                        <Clock className="card-icon" />
+                        <span className="course-duration">
+                          {course.duration}
+                        </span>
+                        <Tag className="card-icon" />
+                        <span className="course-paid">
+                          {course.course_type}
+                        </span>
+                      </div>
+                    </Card.Body>
+                  </Link>
+                </Card>
+              </Col>
+            ))}
         </Row>
       </Container>
     </>

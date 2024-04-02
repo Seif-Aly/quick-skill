@@ -5,10 +5,14 @@ import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import "../Style/RegistrationAndLogin.css";
+import { loginUser, LOGIN_SUCCESS } from "../../Store/actions";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loginError, setLoginError] = useState("");
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -21,11 +25,24 @@ const LoginPage = () => {
   };
 
   const handleLogin = async (e) => {
+    setConfirmationMessage("");
     e.preventDefault();
-  };
-
-  const goToCourses = () => {
-    navigate("/allcourses");
+    try {
+      const data = await dispatch(
+        loginUser({
+          email: formData.email,
+          password: formData.password,
+        })
+      );
+      if (data.success) {
+        setConfirmationMessage(data.message);
+        navigate("/");
+      } else {
+        setLoginError("Login failed.");
+      }
+    } catch (error) {
+      setLoginError("An error occurred during Login.");
+    }
   };
 
   return (
@@ -74,10 +91,17 @@ const LoginPage = () => {
                     variant="primary"
                     type="submit"
                     className="w-100 mb-3"
-                    onClick={goToCourses}
                   >
                     Log in
                   </Button>
+                  {loginError && (
+                    <div className="alert alert-danger">{loginError}</div>
+                  )}
+                  {confirmationMessage && (
+                    <div className="alert alert-success">
+                      {confirmationMessage}
+                    </div>
+                  )}
                 </Form>
 
                 <div className="text-center mb-3">Or With</div>

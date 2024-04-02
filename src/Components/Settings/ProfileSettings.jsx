@@ -1,4 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCurrentUser,
+  updateDescription,
+  updateFirstName,
+  updateLastName,
+  updateUserName,
+  uploadPhoto,
+} from "../../Store/actions";
 import {
   Container,
   Row,
@@ -14,39 +23,92 @@ import { FaUpload } from "react-icons/fa";
 import "../Style/Settings.css";
 import NavbarSignedIn from "../Navbars/NavbarSignedIn";
 
-// Mock data simulating a response from a backend
-const mockUserData = {
-  firstName: "Alexey",
-  lastName: "Kiselev",
-  username: "AKisily",
-  bio: "Software Engineer",
-  isUsernameTaken: true,
-  photo: "/prof.png",
-};
-
-const handleFileChange = (e) => {
-  const file = e.target.files[0];
-
-  // Check if the file is of the correct type (jpg or png) and does not exceed 900 KB
-  if (
-    file &&
-    (file.type === "image/jpeg" || file.type === "image/png") &&
-    file.size <= 900 * 1024
-  ) {
-    const reader = new FileReader();
-    reader.onload = (upload) => {
-      document.querySelector(
-        ".photo-preview"
-      ).style.backgroundImage = `url(${upload.target.result})`;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    // Handle errors
-    alert("File must be a JPG or PNG and less than 900 KB in size.");
-  }
-};
-
 const ProfileSettings = () => {
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.auth || {});
+  const [firstname, setFirstName] = useState(user ? user.firstname : "");
+  const [lastname, setLastName] = useState(user ? user.lastname : "");
+  const [username, setUserName] = useState(user ? user.username : "");
+  const [description, setDescription] = useState(user ? user.description : "");
+  const [photo, setPhoto] = useState(user ? user.photo : "");
+  const [updateError, setUpdateError] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+    const storedPhotoUrl = localStorage.getItem("userPhotoUrl");
+    if (storedPhotoUrl) {
+      setPhoto(storedPhotoUrl);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user && user.photo) {
+      setPhoto(user.photo);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      setFirstName(user.firstname);
+      setLastName(user.lastname);
+      setUserName(user.username);
+      setDescription(user.description);
+    }
+  }, [user]);
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (
+      file &&
+      (file.type === "image/jpeg" || file.type === "image/png") &&
+      file.size <= 900 * 1024
+    ) {
+      const reader = new FileReader();
+      reader.onload = (upload) => {
+        setPhoto(reader.result);
+      };
+      reader.readAsDataURL(file);
+      try {
+        await dispatch(uploadPhoto(file));
+      } catch (error) {
+        alert(error.message);
+      }
+    } else {
+      alert("File must be a JPG or PNG and less than 900 KB in size.");
+    }
+  };
+
+  const handleSaveChanges = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(updateFirstName(firstname));
+      await dispatch(updateLastName(lastname));
+      await dispatch(updateUserName(username));
+      await dispatch(updateDescription(description));
+    } catch (error) {
+      setUpdateError("An error occurred while saving changes.");
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <Alert variant="danger">{error}</Alert>;
+  if (!user) return <div>No user data available.</div>;
   return (
     <>
       <NavbarSignedIn />
@@ -56,47 +118,37 @@ const ProfileSettings = () => {
             <Sidebar />
           </Col>
           <Col xs={12} md={9}>
-            <Form>
+            <Form onSubmit={handleSaveChanges}>
               <Form.Group as={Row} controlId="formFirstName" className="mb-3">
-                <Form.Label column sm={2}>
-                  First name
-                </Form.Label>
+                <h2 className="formtitles">First name</h2>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
-                    defaultValue={mockUserData.firstName}
+                    value={firstname}
+                    onChange={handleFirstNameChange}
                   />
                 </Col>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formLastName" className="mb-3">
-                <Form.Label column sm={2}>
-                  Last name
-                </Form.Label>
+                <h2 className="formtitles">Last name</h2>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
-                    defaultValue={mockUserData.lastName}
+                    value={lastname}
+                    onChange={handleLastNameChange}
                   />
                 </Col>
               </Form.Group>
 
-              <Form.Group
-                as={Row}
-                controlId="formUsername"
-                className={
-                  mockUserData.isUsernameTaken ? "has-error mb-3" : "mb-3"
-                }
-              >
-                <Form.Label column sm={2}>
-                  Username
-                </Form.Label>
+              <Form.Group as={Row} controlId="formUsername" className="mb-3">
+                <h2 className="formtitles">Username</h2>
                 <Col sm={10}>
                   <InputGroup hasValidation>
                     <Form.Control
                       type="text"
-                      defaultValue={mockUserData.username}
-                      isInvalid={mockUserData.isUsernameTaken}
+                      defaultValue={user.username}
+                      onChange={handleUserNameChange}
                     />
                     <Form.Control.Feedback type="invalid">
                       Sorry, this name is already taken
@@ -106,22 +158,19 @@ const ProfileSettings = () => {
               </Form.Group>
 
               <Form.Group as={Row} controlId="formBio" className="mb-3">
-                <Form.Label column sm={2}>
-                  Bio
-                </Form.Label>
+                <h2 className="formtitles">Description</h2>
                 <Col sm={10}>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    defaultValue={mockUserData.bio}
+                    defaultValue={user.description}
+                    onChange={handleDescriptionChange}
                   />
                 </Col>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formPhoto" className="mb-3">
-                <Form.Label column sm={2}>
-                  Photo
-                </Form.Label>
+                <h2 className="formtitles mb-3">Photo</h2>
                 <Col sm={10}>
                   <InputGroup>
                     <div className="upload-btn">
@@ -143,7 +192,7 @@ const ProfileSettings = () => {
                     </div>
                     <div
                       className="photo-preview"
-                      style={{ backgroundImage: `url(${mockUserData.photo})` }}
+                      style={{ backgroundImage: `url(${photo})` }}
                     ></div>
                   </InputGroup>
                   <Form.Text className="text-muted">
@@ -152,10 +201,8 @@ const ProfileSettings = () => {
                 </Col>
               </Form.Group>
 
-              <Form.Group as={Row} controlId="formPassword" className="mb-3">
-                <Form.Label column sm={2}>
-                  Password
-                </Form.Label>
+              {/* <Form.Group as={Row} controlId="formPassword" className="mb-3">
+                <h2 className="formtitles">Password</h2>
                 <Col sm={10}>
                   <InputGroup>
                     <Form.Control type="password" defaultValue="password" />
@@ -164,7 +211,15 @@ const ProfileSettings = () => {
                     </InputGroup>
                   </InputGroup>
                 </Col>
-              </Form.Group>
+              </Form.Group> */}
+
+              <Button
+                type="submit"
+                variant="primary"
+                className="btn-submit-form"
+              >
+                Save Changes
+              </Button>
             </Form>
           </Col>
         </Row>

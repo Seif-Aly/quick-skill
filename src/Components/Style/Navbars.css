@@ -52,6 +52,9 @@
   color: var(--color-secondary);
   border-color: var(--color-primary);
 }
+.profile-menu-item {
+  cursor: pointer;
+}
 
 @media (max-width: 967px) {
   .btn.custom-button-login,

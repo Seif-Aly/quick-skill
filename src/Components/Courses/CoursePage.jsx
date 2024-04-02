@@ -1,83 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Accordion } from "react-bootstrap";
 import NavbarInCourse from "../Navbars/NavbarInCourse";
 import { useNavigate, Link } from "react-router-dom";
 import "../Style/CoursePage.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCourseContent,
+  joinCourse,
+  quitCourse,
+} from "../../Store/actions";
+import { useParams } from "react-router-dom";
+import NavbarSignedIn from "../Navbars/NavbarSignedIn";
 
 const CoursePage = () => {
   const navigate = useNavigate();
   const [isJoined, setIsJoined] = useState(false);
+  const { courseContent, loadingCourseContent, courseContentError } =
+    useSelector((state) => state.auth);
+  const { courseId } = useParams();
+  const dispatch = useDispatch();
 
-  const courseData = {
-    logo: "/Csharp.svg",
-    name: "C#",
-    members: "1.2k members",
-    description: ["Basics of programming", "OOP"],
-    sections: [
-      {
-        title: "Overview",
-        lessons: [
-          {
-            name: "Lecture",
-            description: "An introduction to C# basics.",
-            page: "/lecture",
-          },
-          {
-            name: "Seminar",
-            description: "How to output data to the console.",
-            page: "/seminar",
-          },
-          {
-            name: "Seminar",
-            description: "Understanding variables and data types.",
-            page: "/seminar",
-          },
-        ],
-      },
-      {
-        title: "Overview",
-        lessons: [
-          {
-            name: "Your First Lesson",
-            description: "An introduction to C# basics.",
-          },
-          { name: "Output", description: "How to output data to the console." },
-          {
-            name: "Variables",
-            description: "Understanding variables and data types.",
-          },
-        ],
-      },
-      {
-        title: "Overview",
-        lessons: [
-          {
-            name: "Your First Lesson",
-            description: "An introduction to C# basics.",
-          },
-          { name: "Output", description: "How to output data to the console." },
-          {
-            name: "Variables",
-            description: "Understanding variables and data types.",
-          },
-        ],
-      },
-    ],
+  useEffect(() => {
+    if (courseId) {
+      dispatch(fetchCourseContent(courseId, isJoined));
+    }
+  }, [dispatch, courseId, isJoined]);
+
+  useEffect(() => {
+    if (courseContent && courseContent.enroll_status) {
+      setIsJoined(courseContent.enroll_status === "leave");
+    }
+  }, [courseContent]);
+
+  const handleJoin = async () => {
+    try {
+      await dispatch(joinCourse(courseId));
+      setIsJoined(true);
+    } catch (error) {
+      console.error("Failed to join the course:", error);
+    }
   };
 
-  const isUserEnrolled = false;
+  const handleQuit = async () => {
+    try {
+      await dispatch(quitCourse(courseId));
+      setIsJoined(false);
+    } catch (error) {
+      console.error("Failed to leave the course:", error);
+    }
+  };
+
+  if (loadingCourseContent) return <div>Loading course content...</div>;
+  if (courseContentError) return <div>Error: {courseContentError}</div>;
+  if (!courseContent) return <div>No course content available</div>;
+
+  const courseLogoUrl =
+    courseContent.media && courseContent.media[1]
+      ? courseContent.media[1].url
+      : "/prof.png";
 
   const handleBack = () => {
     navigate(-1);
   };
 
-  const toggleJoin = () => {
-    setIsJoined(!isJoined);
-  };
-
   return (
     <>
-      <NavbarInCourse />
+      {isJoined ? <NavbarInCourse /> : <NavbarSignedIn />}
       <Container className="course-page-container">
         <Row>
           <Col className="my-4">
@@ -89,52 +77,67 @@ const CoursePage = () => {
         <Row className="justify-content-center">
           <Col md={8} className="text-left course-intro">
             <img
-              src={courseData.logo}
+              src={courseLogoUrl}
               className="course-logo"
-              alt={courseData.name}
+              alt={
+                courseContent.media && courseContent.media[1]
+                  ? courseContent.media[1].name
+                  : "Course logo"
+              }
             />
             <div className="course-info">
               <div>
-                <h1 className="course-title">{courseData.name}</h1>
-                <p className="course-members">{courseData.members}</p>
+                <h1 className="course-title">{courseContent.course_name}</h1>
+                {/* <p className="course-members">{courseContent.members}</p> */}
               </div>
               <Button
                 variant={isJoined ? "secondary" : "primary"}
-                className="btn-join"
-                onClick={toggleJoin}
+                onClick={isJoined ? handleQuit : handleJoin}
               >
-                {isJoined ? "LEAVE THIS GROUP" : "JOIN THIS GROUP"}
+                {isJoined ? "Leave This Group" : "Join This Group"}
               </Button>
             </div>
 
             <ul className="course-description">
-              {courseData.description.map((item, idx) => (
-                <li key={idx}>{"⚫ " + item}</li>
-              ))}
+              <p className="course-title">{courseContent.course_description}</p>
             </ul>
           </Col>
         </Row>
         <Accordion defaultActiveKey="0" className="course-accordion">
-          {courseData.sections.map((section, index) => (
+          {courseContent.course_topics.map((topicWrapper, index) => (
             <Accordion.Item
               eventKey={String(index)}
-              key={index}
+              key={topicWrapper.topic.topic_id}
               className="course-section"
             >
-              <Accordion.Header>{section.title}</Accordion.Header>
+              <Accordion.Header>{topicWrapper.topic.name}</Accordion.Header>
               <Accordion.Body>
-                {section.lessons.map((lesson, lessonIndex) => (
-                  <div key={lessonIndex} className="lesson-item">
-                    <strong>
-                      {lesson.page ? (
-                        <Link to={lesson.page}>{lesson.name}</Link>
-                      ) : (
-                        lesson.name
-                      )}
-                    </strong>
-                    <p className="lesson-description">{lesson.description}</p>
-                  </div>
-                ))}
+                {topicWrapper.topic.topic_content.map(
+                  (content, contentIndex) => (
+                    <div key={contentIndex} className="lesson-item">
+                      <strong>
+                        {content.content_object.lecture_id ? (
+                          <Link
+                            to={`/course/${courseId}/lecture/${content.content_object.lecture_id}`}
+                          >
+                            {content.content_object.name}
+                          </Link>
+                        ) : content.content_object.seminar_id ? (
+                          <Link
+                            to={`/course/${courseId}/seminar/${content.content_object.seminar_id}`}
+                          >
+                            {content.content_object.name}
+                          </Link>
+                        ) : (
+                          content.content_object.name
+                        )}
+                      </strong>
+                      <p className="lesson-description">
+                        {content.content_object.description}
+                      </p>
+                    </div>
+                  )
+                )}
               </Accordion.Body>
             </Accordion.Item>
           ))}

@@ -35,9 +35,10 @@ const NewQuestionModal = ({ show, handleClose }) => {
       centered
       className="new-question-modal"
     >
-      <Modal.Header closeButton className="new-question-modal-header">
-        <Modal.Title>New Question</Modal.Title>
-      </Modal.Header>
+      <Modal.Header
+        closeButton
+        className="new-question-modal-header"
+      ></Modal.Header>
       <Modal.Body className="new-question-modal-body">
         <Form>
           <Form.Group className="mb-3 new-question-form-group">

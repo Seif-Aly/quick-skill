@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import NavbarSignedOut from "../Navbars/NavbarSignedOut";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import "../Style/RegistrationAndLogin.css";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../../Store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser, REGISTER_SUCCESS } from "../../Store/actions";
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [serverError, setServerError] = useState("");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -31,13 +35,14 @@ const RegistrationPage = () => {
     });
   };
 
+  const { loading } = useSelector((state) => state.auth);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     let newErrors = { ...formData.errors, password: "", confirmPassword: "" };
 
-    if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters long.";
+    if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters long.";
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match.";
     }
@@ -46,17 +51,40 @@ const RegistrationPage = () => {
       setFormData({ ...formData, errors: newErrors });
       return;
     }
+    setServerError("");
+    setConfirmationMessage("");
 
-    dispatch(
-      registerUser({
-        firstname: formData.firstName,
-        lastname: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-      })
-    ).then(() => {
-      navigate("/AllCourses");
-    });
+    try {
+      const result = await dispatch(
+        registerUser({
+          firstname: formData.firstName,
+          lastname: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        })
+      );
+      if (result.success) {
+        setConfirmationMessage(result.message);
+        setFormData({
+          email: "",
+          firstName: "",
+          lastName: "",
+          password: "",
+          confirmPassword: "",
+          errors: {
+            password: "",
+            confirmPassword: "",
+          },
+        });
+        setTimeout(() => navigate("/login"), 5000);
+      } else {
+        setErrorMessage(result.message);
+      }
+    } catch (error) {
+      setErrorMessage(
+        error.message || "An error occurred during registration."
+      );
+    }
   };
 
   return (
@@ -150,11 +178,19 @@ const RegistrationPage = () => {
                     variant="primary"
                     type="submit"
                     className="w-100 mb-3 btn-primary"
+                    disabled={loading}
                   >
-                    Sign up
+                    {loading ? "Signing Up..." : "Sign Up"}
                   </Button>
                 </Form>
-
+                {errorMessage && (
+                  <div className="alert alert-danger">{errorMessage}</div>
+                )}
+                {confirmationMessage && (
+                  <div className="alert alert-success">
+                    {confirmationMessage}
+                  </div>
+                )}
                 <div className="text-center mb-3">Or with</div>
 
                 <Button variant="primary" className="mb-2 w-100 btn-facebook">

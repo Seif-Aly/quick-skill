@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ProgressBar, Modal } from "react-bootstrap";
 import "../Style/QuestionPage.css";
+import { useParams } from "react-router-dom";
 
 const QuestionPage = () => {
+  const { courseId } = useParams();
   const content = "Vectors";
   const difficulties = ["Medium"];
 
   const questionsMockData = [
     {
-      text: "What is the best language?",
+      text: "What is the easiest language?",
       options: [
         { id: "A", text: "C#" },
         { id: "B", text: "C++" },
@@ -21,7 +23,7 @@ const QuestionPage = () => {
         "Explanation text for question 1...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus eros, placerat ac vehicula id, hendrerit pharetra lorem. Duis condimentum a ex varius suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut malesuada malesuada magna at tempus. Nam aliquam ornare suscipit. Donec eget libero eget leo aliquam pharetra. Maecenas tempor nec metus ac ullamcorper. Curabitur nunc arcu, porttitor eu consectetur et, pulvinar nec nisl. Suspendisse facilisis sodales orci, eu laoreet arcu euismod convallis. Maecenas id sapien sed tellus gravida aliquet sollicitudin eget justo. Phasellus gravida nibh a neque malesuada maximus. Proin elementum justo sit amet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus eros, placerat ac vehicula id, hendrerit pharetra lorem. Duis condimentum a ex varius suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut malesuada malesuada magna at tempus. Nam aliquam ornare suscipit. Donec eget libero eget leo aliquam pharetra. Maecenas tempor nec metus ac ullamcorper. Curabitur nunc arcu, porttitor eu consectetur et, pulvinar nec nisl. Suspendisse facilisis sodales orci, eu laoreet arcu euismod convallis. Maecenas id sapien sed tellus gravida aliquet sollicitudin eget justo. Phasellus gravida nibh a neque malesuada maximus. Proin elementum justo sit amet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus eros, placerat ac vehicula id, hendrerit pharetra lorem. Duis condimentum a ex varius suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut malesuada malesuada magna at tempus. Nam aliquam ornare suscipit. Donec eget libero eget leo aliquam pharetra. Maecenas tempor nec metus ac ullamcorper. Curabitur nunc arcu, porttitor eu consectetur et, pulvinar nec nisl. Suspendisse facilisis sodales orci, eu laoreet arcu euismod convallis. Maecenas id sapien sed tellus gravida aliquet sollicitudin eget justo. Phasellus gravida nibh a neque malesuada maximus. Proin elementum justo sit amet.",
     },
     {
-      text: "What is the worst language?",
+      text: "What is the hardest language?",
       options: [
         { id: "A", text: "C#" },
         { id: "B", text: "C++" },
@@ -162,7 +164,9 @@ const QuestionPage = () => {
                   <div>5:13</div>
                 </div>
               </div>
-              <button className="finish-button">Finish</button>
+              <Link to={`/course/${courseId}`} className="finish-button">
+                Finish
+              </Link>
             </div>
           )}
         </div>
