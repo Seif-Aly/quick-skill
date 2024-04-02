@@ -9,6 +9,7 @@ import RegistrationPage from "./Components/RegistrationAndLogin/RegistrationPage
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./Components/RegistrationAndLogin/LoginPage";
 import ProfilePage from "./Components/Profile/ProfilePage/ProfilePage";
+import ProfilePageOtherUser from "./Components/Profile/ProfilePageFromOtherPersonView/ProfilePage";
 import Sidebar from "./Components/Settings/Sidebar";
 import ProfileSettings from "./Components/Settings/ProfileSettings";
 import DeleteSettings from "./Components/Settings/DeleteSettings";
@@ -33,6 +34,10 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/allCourses" element={<CoursesPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route
+          path="/ProfilePageOtherUser"
+          element={<ProfilePageOtherUser />}
+        />
         <Route path="/courses/*" element={<CoursePage />} />
         <Route path="/Leaderboard" element={<LeaderboardPage />} />
         <Route path="/Community" element={<CommunityPage />} />

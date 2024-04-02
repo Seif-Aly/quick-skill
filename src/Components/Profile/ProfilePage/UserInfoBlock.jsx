@@ -25,11 +25,8 @@ const UserInfoBlock = () => {
           |{" "}
           <span className="user-followers">{userData.followers} Followers</span>
         </Card.Text>
-        <Button variant="primary" className="userActionBtn">
+        <Button variant="primary" className="userActionBtn" href="/search-page">
           <FaUserFriends /> find people
-        </Button>
-        <Button variant="primary" className="userActionBtn">
-          <FaShoppingCart /> shop
         </Button>
       </Card.Body>
     </Card>

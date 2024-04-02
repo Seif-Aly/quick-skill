@@ -12,11 +12,36 @@ export default {
   ],
   currentLeague: "Digital Guardian",
   weeklyRating: [
-    { name: "User_1", xp: "2798 XP", avatar: "/prof.png" },
-    { name: "User_2", xp: "2500 XP", avatar: "/prof.png" },
-    { name: "User_3", xp: "1500 XP", avatar: "/prof.png" },
-    { name: "User_4", xp: "1500 XP", avatar: "/prof.png" },
-    { name: "User_5", xp: "1500 XP", avatar: "/prof.png" },
+    {
+      name: "User_1",
+      xp: "2798 XP",
+      avatar: "/prof.png",
+      prof: "/ProfilePageOtherUser",
+    },
+    {
+      name: "User_2",
+      xp: "2500 XP",
+      avatar: "/prof.png",
+      prof: "/ProfilePageOtherUser",
+    },
+    {
+      name: "User_3",
+      xp: "1500 XP",
+      avatar: "/prof.png",
+      prof: "/ProfilePageOtherUser",
+    },
+    {
+      name: "User_4",
+      xp: "1500 XP",
+      avatar: "/prof.png",
+      prof: "/ProfilePageOtherUser",
+    },
+    {
+      name: "User_5",
+      xp: "1500 XP",
+      avatar: "/prof.png",
+      prof: "/ProfilePageOtherUser",
+    },
   ],
   followingRating: [
     { name: "User_1", xp: "2798 XP", avatar: "/prof.png" },

@@ -2,13 +2,11 @@ import React from "react";
 import { Card, Carousel } from "react-bootstrap";
 
 const Certificates = () => {
-  // Replace with your data fetching logic
   const certificates = [
     { id: 1, title: "C# Beginner", logo: "C#" },
     { id: 1, title: "C# Beginner", logo: "C#" },
     { id: 1, title: "C# Beginner", logo: "C#" },
     { id: 1, title: "C# Beginner", logo: "C#" },
-    // Add more certificates as needed
   ];
 
   return (

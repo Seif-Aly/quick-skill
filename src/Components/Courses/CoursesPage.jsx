@@ -44,7 +44,7 @@ const CoursesPage = () => {
     },
     {
       id: 2,
-      title: "C++",
+      title: "C#",
       level: "Beginner",
       duration: "2 weeks",
       paid: "paid",
@@ -54,7 +54,7 @@ const CoursesPage = () => {
     },
     {
       id: 3,
-      title: "Python",
+      title: "c#",
       level: "Beginner",
       duration: "2 weeks",
       paid: "free",
@@ -111,90 +111,101 @@ const CoursesPage = () => {
             </InputGroup>
 
             {/* Level Filter */}
-            <ToggleButtonGroup
-              type="radio"
-              name="levels"
-              className="mt-3"
-              value={level}
-              onChange={(val) => setLevel(val)}
-            >
-              <ToggleButton
-                id="tbg-radio-1"
-                value="beginner"
-                variant="outline-primary"
+            <div className="filter-group">
+              <ToggleButtonGroup
+                type="radio"
+                name="levels"
+                className="mt-3"
+                value={level}
+                onChange={(val) => setLevel(val)}
               >
-                Beginner
-              </ToggleButton>
-              <ToggleButton
-                id="tbg-radio-2"
-                value="intermediate"
-                variant="outline-primary"
+                <ToggleButton
+                  id="tbg-radio-1"
+                  value="beginner"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  Beginner
+                </ToggleButton>
+                <ToggleButton
+                  id="tbg-radio-2"
+                  value="intermediate"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  Intermediate
+                </ToggleButton>
+                <ToggleButton
+                  id="tbg-radio-3"
+                  value="advanced"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  Advanced
+                </ToggleButton>
+              </ToggleButtonGroup>
+              {"    "}
+              {/* Duration Filter */}
+              <ToggleButtonGroup
+                type="radio"
+                name="durations"
+                className="mt-3"
+                value={duration}
+                onChange={(val) => setDuration(val)}
               >
-                Intermediate
-              </ToggleButton>
-              <ToggleButton
-                id="tbg-radio-3"
-                value="advanced"
-                variant="outline-primary"
+                <ToggleButton
+                  id="tbg-radio-4"
+                  value="<1"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  Less than 1 month
+                </ToggleButton>
+                <ToggleButton
+                  id="tbg-radio-5"
+                  value="2-3"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  2-3 months
+                </ToggleButton>
+                <ToggleButton
+                  id="tbg-radio-6"
+                  value="3+"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  3+ months
+                </ToggleButton>
+              </ToggleButtonGroup>
+
+              {"    "}
+              {/* Pricing Filter */}
+              <ToggleButtonGroup
+                type="radio"
+                name="pricing"
+                className="mt-3 tg-bt"
+                value={pricing}
+                onChange={(val) => setPricing(val)}
               >
-                Advanced
-              </ToggleButton>
-            </ToggleButtonGroup>
-            {"    "}
-            {/* Duration Filter */}
-            <ToggleButtonGroup
-              type="radio"
-              name="durations"
-              className="mt-3"
-              value={duration}
-              onChange={(val) => setDuration(val)}
-            >
-              <ToggleButton
-                id="tbg-radio-4"
-                value="<1"
-                variant="outline-primary"
-              >
-                Less than 1 month
-              </ToggleButton>
-              <ToggleButton
-                id="tbg-radio-5"
-                value="2-3"
-                variant="outline-primary"
-              >
-                2-3 months
-              </ToggleButton>
-              <ToggleButton
-                id="tbg-radio-6"
-                value="3+"
-                variant="outline-primary"
-              >
-                3+ months
-              </ToggleButton>
-            </ToggleButtonGroup>
-            {"    "}
-            {/* Pricing Filter */}
-            <ToggleButtonGroup
-              type="radio"
-              name="pricing"
-              className="mt-3 tg-bt"
-              value={pricing}
-              onChange={(val) => setPricing(val)}
-            >
-              <ToggleButton
-                id="tbg-radio-7"
-                value="free"
-                variant="outline-primary"
-              >
-                Free
-              </ToggleButton>
-              <ToggleButton
-                id="tbg-radio-8"
-                value="paid"
-                variant="outline-primary"
-              >
-                Paid
-              </ToggleButton>
-            </ToggleButtonGroup>
+                <ToggleButton
+                  id="tbg-radio-7"
+                  value="free"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  Free
+                </ToggleButton>
+                <ToggleButton
+                  id="tbg-radio-8"
+                  value="paid"
+                  variant="outline-primary"
+                  className="flt-btn"
+                >
+                  Paid
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </div>
           </Col>
         </Row>
 
@@ -213,7 +224,7 @@ const CoursesPage = () => {
                     <div className="card-logo-title">
                       <img
                         src={course.logo}
-                        className="course-logo"
+                        className="csharp-logo"
                         alt="logo"
                       />
                       <Card.Title className="card-title">

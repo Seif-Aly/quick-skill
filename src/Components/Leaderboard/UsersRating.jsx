@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, ListGroup, ButtonGroup } from "react-bootstrap";
 import mockData from "./mockData";
 
@@ -40,7 +41,13 @@ const UsersRating = ({ users }) => {
               className={`user-rating ${index < 3 ? "top-three" : ""}`}
             >
               {index >= 3 && <span className="user-number">{index + 1}</span>}
-              <img src={user.avatar} alt={user.name} className="user-avatar" />
+              <Link to={user.prof}>
+                <img
+                  src={user.avatar}
+                  alt={user.name}
+                  className="user-avatar"
+                />
+              </Link>
               <span className="user-name">{user.name}</span>
               <span className="user-xp">{user.xp}</span>
             </div>

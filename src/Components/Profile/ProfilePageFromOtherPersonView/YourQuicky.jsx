@@ -15,8 +15,6 @@ const YourQuicky = () => {
   return (
     <div className="quicky-container">
       <h2 className="titleQuicky">His Quicky</h2>
-      <img src="/levelShield.svg" alt="shield" className="shield" />
-      <span className="levelShield">{userData.level}</span>
       <div className="quicky-avatar">
         <img
           src={userData.avatarImage}

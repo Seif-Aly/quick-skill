@@ -8,20 +8,23 @@ const CoursesProgress = () => {
   ];
 
   return (
-    <Card className="courses-progress-card">
+    <Card className="coursess-progress-card">
       <Card.Body>
-        <Card.Title>Courses Progress</Card.Title>
+        <Card.Title className="crs-title">Courses Progress</Card.Title>
         {courses.map((course) => (
           <div key={course.id} className="course-item">
-            <span className="course-logo">C#</span>
             <span className="course-title">{course.title}</span>
             <span className="course-status">{course.status}</span>
-            <Button variant="link" className="course-action">
+            <Button variant="link" className="course-action" href="/courses/1">
               ▶
             </Button>
           </div>
         ))}
-        <Button variant="outline-primary" className="w-100 btn-cp">
+        <Button
+          variant="outline-primary"
+          className="w-100 btn-cp"
+          href="/allcourses"
+        >
           Browse Courses
         </Button>
       </Card.Body>

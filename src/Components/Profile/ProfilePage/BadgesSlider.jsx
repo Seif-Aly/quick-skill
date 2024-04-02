@@ -46,9 +46,7 @@ const BadgesSlider = () => {
 
   return (
     <div className="badges-slider-container">
-      <h2>
-        Badges <span className="view-all">View all badges</span>
-      </h2>
+      <h2>Badges</h2>
       <Slider {...settings}>
         {badges.map((badge) => (
           <div key={badge.id} className="badge-item">
