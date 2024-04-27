@@ -25,37 +25,23 @@ import CommunityPage from "./Components/Community/CommunityPage";
 import ProtectedRoute from "./Store/ProtectedRoute";
 import RedirectIfAuthenticated from "./Store/RedirectIfAuthenticated";
 import Main from "./Components/Main/Main";
+import Preview from "./Components/Home/PreViewPage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        {/* Public and initial routes */}
         <Route path="*" element={<Error />} />
-        <Route path="/" element={<Main />} />
-        <Route
-          path="/login"
-          element={
-            <RedirectIfAuthenticated redirectTo="/">
-              <LoginPage />
-            </RedirectIfAuthenticated>
-          }
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <RedirectIfAuthenticated redirectTo="/">
-              <RegistrationPage />
-            </RedirectIfAuthenticated>
-          }
-        />
+        <Route path="/" element={<Preview />} />
+        {/* <Route path="/login" element={<LoginPage />} />
+        <Route path="/sign-up" element={<RegistrationPage />} />
         <Route
           path="/create-new-password"
           element={<CreateNewPasswordPage />}
         />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-        {/* Protected routes for signed in users */}
+
         <Route
           path="/"
           element={
@@ -129,7 +115,7 @@ function App() {
           }
         />
 
-        {/* Nested routes for settings */}
+
         <Route
           path="/settings"
           element={
@@ -154,7 +140,6 @@ function App() {
           }
         />
 
-        {/* Additional routes */}
         <Route
           path="/certificate/:courseId"
           element={
@@ -162,7 +147,7 @@ function App() {
               <CertificatePage />
             </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
     </div>
   );

@@ -21,7 +21,7 @@ const UsersRating = ({ users }) => {
             variant={activeList === "weekly" ? "primary" : "outline-secondary"}
             onClick={() => setActiveList("weekly")}
           >
-            Weekly Rating
+            Еженедельный рейтинг
           </Button>
           <Button
             variant={
@@ -29,7 +29,7 @@ const UsersRating = ({ users }) => {
             }
             onClick={() => setActiveList("following")}
           >
-            Following Rating
+            Следующий рейтинг
           </Button>
         </ButtonGroup>
       </div>

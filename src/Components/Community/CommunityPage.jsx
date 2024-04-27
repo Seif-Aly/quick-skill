@@ -15,7 +15,7 @@ import { AiOutlineLike } from "react-icons/ai";
 const mockQuestions = new Array(4).fill(null).map((_, index) => ({
   id: index,
   tag: "OOP",
-  title: "How to make a class in C#?",
+  title: "Как создать класс на C#?",
   answers: 20,
   likes: 50,
   date: "13/01/2024",
@@ -102,43 +102,43 @@ const CommunityPage = () => {
       <NavbarInCourse />
       <Container fluid="md" className="my-4 comm-cont">
         <Row className="mb-3 justify-content-start">
-          <h1 className="mt-4">Follow us in our channels </h1>
+          <h1 className="mt-4">Следите за нами в социальных сетях </h1>
           <Col md="auto">
             <Button variant="primary" className="mt-1">
-              Discord Channel
+              Discord
             </Button>
           </Col>
           <Col md="auto">
             <Button variant="primary" className="mt-1">
-              Telegram Channel
+              Telegram
             </Button>
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <h1 className="mt-4">Q&A Discussions</h1>
+            <h1 className="mt-4">Q&A</h1>
             <Button
               variant="primary"
               onClick={handleShow}
               className="new-question-btn mt-2"
             >
-              + NEW QUESTION
+              + НОВЫЙ ВОПРОС
             </Button>
             <NewQuestionModal show={showModal} handleClose={handleClose} />
             <Dropdown onSelect={handleSortChange} className="mb-3 mt-1">
               <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-                {sortOption === "trend" ? "In trend" : "Recent"}
+                {sortOption === "trend" ? "В тренде" : "Recent"}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item eventKey="trend">In trend</Dropdown.Item>
-                <Dropdown.Item eventKey="recent">Recent</Dropdown.Item>
+                <Dropdown.Item eventKey="trend">В тренде</Dropdown.Item>
+                <Dropdown.Item eventKey="recent">Недавний</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
             <Form.Group className="mb-4" controlId="searchQuestion">
-              <Form.Control type="search" placeholder="Search question" />
+              <Form.Control type="search" placeholder="Поисковый вопрос" />
             </Form.Group>
 
             {questions.map((question) => (
@@ -150,7 +150,7 @@ const CommunityPage = () => {
                   <h5 className="custom-card-title">{question.title}</h5>
                   <div className="custom-card-stats">
                     <span className="custom-card-answers">
-                      Answers: {question.answers}
+                      Ответы: {question.answers}
                     </span>
                     <span className="custom-card-likes">
                       <AiOutlineLike className="mr-1" /> {question.likes}

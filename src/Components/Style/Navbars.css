@@ -85,3 +85,35 @@
   display: flex;
   align-items: center;
 }
+
+.navbar-icon-link {
+  color: #000; /* Or any color you prefer */
+  margin-right: 15px; /* Space between icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-icon-link:hover {
+  color: var(--color-primary); /* Highlight color on hover */
+}
+
+.nav-buttonss {
+  display: flex;
+  align-items: center;
+}
+
+.logo-cont {
+  display: flex;
+  align-items: center;
+}
+
+.logo-cont h1 {
+  color: var(--color-primary);
+  margin-top: -39px;
+  margin-left: 65px; /* Adjust this value as needed for spacing */
+}
+
+.submit-btnn {
+  color: green;
+}

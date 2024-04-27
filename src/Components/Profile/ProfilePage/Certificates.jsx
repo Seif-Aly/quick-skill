@@ -4,9 +4,7 @@ import { Card, Carousel } from "react-bootstrap";
 const Certificates = () => {
   const certificates = [
     { id: 1, title: "C# Beginner", logo: "C#" },
-    { id: 2, title: "C# Beginner", logo: "C#" },
-    { id: 3, title: "C# Beginner", logo: "C#" },
-    { id: 4, title: "C# Beginner", logo: "C#" },
+    { id: 2, title: "Python Beginner", logo: "Python" },
   ];
 
   return (

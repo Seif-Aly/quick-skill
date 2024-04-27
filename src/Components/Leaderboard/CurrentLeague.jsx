@@ -5,7 +5,7 @@ const CurrentLeague = ({ currentLeague }) => {
   return (
     <>
       <div className="league-cont">
-        <h1>Current League:</h1>
+        <h1>Текущая лига:</h1>
         <Card className="card-current">
           <Card.Body className="cont-league">
             <img

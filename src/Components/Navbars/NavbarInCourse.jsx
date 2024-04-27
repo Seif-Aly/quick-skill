@@ -196,10 +196,10 @@ const NavbarInCourse = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
             <LinkContainer to={`/course/${courseId}/leaderboard`}>
-              <Nav.Link className="nav-link-lg">Leaderboard</Nav.Link>
+              <Nav.Link className="nav-link-lg">Рейтинг</Nav.Link>
             </LinkContainer>
             <LinkContainer to={`/course/${courseId}/community`}>
-              <Nav.Link className="nav-link-lg">Community</Nav.Link>
+              <Nav.Link className="nav-link-lg">Общество</Nav.Link>
             </LinkContainer>
           </Nav>
           <Nav>

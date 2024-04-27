@@ -16,10 +16,10 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 // Mock data for streaks and freezes
 const streakData = {
-  "2024-04-11": "streak",
-  "2024-04-12": "streak",
-  "2024-04-13": "freeze",
-  "2024-04-14": "freeze",
+  "2024-04-17": "streak",
+  "2024-04-18": "streak",
+  "2024-04-19": "freeze",
+  "2024-04-20": "freeze",
 };
 
 const StreakCalendar = () => {

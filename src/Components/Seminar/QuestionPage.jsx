@@ -6,43 +6,29 @@ import { useParams } from "react-router-dom";
 
 const QuestionPage = () => {
   const { courseId } = useParams();
-  const content = "Vectors";
-  const difficulties = ["Medium"];
+  const content = "Variables";
+  const difficulties = ["Easy"];
 
   const questionsMockData = [
     {
-      text: "What is the easiest language?",
+      text: "Which of these lines of code create new variables?",
       options: [
-        { id: "A", text: "C#" },
-        { id: "B", text: "C++" },
-        { id: "C", text: "Python" },
-        { id: "D", text: "Swift" },
-      ],
-      correctAnswer: "A",
-      explanation:
-        "Explanation text for question 1...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus eros, placerat ac vehicula id, hendrerit pharetra lorem. Duis condimentum a ex varius suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut malesuada malesuada magna at tempus. Nam aliquam ornare suscipit. Donec eget libero eget leo aliquam pharetra. Maecenas tempor nec metus ac ullamcorper. Curabitur nunc arcu, porttitor eu consectetur et, pulvinar nec nisl. Suspendisse facilisis sodales orci, eu laoreet arcu euismod convallis. Maecenas id sapien sed tellus gravida aliquet sollicitudin eget justo. Phasellus gravida nibh a neque malesuada maximus. Proin elementum justo sit amet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus eros, placerat ac vehicula id, hendrerit pharetra lorem. Duis condimentum a ex varius suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut malesuada malesuada magna at tempus. Nam aliquam ornare suscipit. Donec eget libero eget leo aliquam pharetra. Maecenas tempor nec metus ac ullamcorper. Curabitur nunc arcu, porttitor eu consectetur et, pulvinar nec nisl. Suspendisse facilisis sodales orci, eu laoreet arcu euismod convallis. Maecenas id sapien sed tellus gravida aliquet sollicitudin eget justo. Phasellus gravida nibh a neque malesuada maximus. Proin elementum justo sit amet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus eros, placerat ac vehicula id, hendrerit pharetra lorem. Duis condimentum a ex varius suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut malesuada malesuada magna at tempus. Nam aliquam ornare suscipit. Donec eget libero eget leo aliquam pharetra. Maecenas tempor nec metus ac ullamcorper. Curabitur nunc arcu, porttitor eu consectetur et, pulvinar nec nisl. Suspendisse facilisis sodales orci, eu laoreet arcu euismod convallis. Maecenas id sapien sed tellus gravida aliquet sollicitudin eget justo. Phasellus gravida nibh a neque malesuada maximus. Proin elementum justo sit amet.",
-    },
-    {
-      text: "What is the hardest language?",
-      options: [
-        { id: "A", text: "C#" },
-        { id: "B", text: "C++" },
-        { id: "C", text: "Python" },
-        { id: "D", text: "Swift" },
+        { id: "A", text: 'message = "Good morning, Dave!"' },
+        { id: "B", text: 'var operatingSystem = "macOS"' },
+        { id: "C", text: 'sring operatingSystem = "macOS"' },
       ],
       correctAnswer: "B",
-      explanation: "Explanation text for question 2...",
+      explanation: "Explanation text for question 1",
     },
     {
-      text: "What is the IOS language?",
+      text: " Какие из этих строк кода создают новые переменные?",
       options: [
-        { id: "A", text: "C#" },
-        { id: "B", text: "C++" },
-        { id: "C", text: "Python" },
-        { id: "D", text: "Swift" },
+        { id: "A", text: 'var str = "Hello, playground"' },
+        { id: "B", text: 'user = "twostraws"' },
+        { id: "C", text: 'int user = "twostraws"' },
       ],
-      correctAnswer: "D",
-      explanation: "Explanation text for question 3...",
+      correctAnswer: "A",
+      explanation: "Needs to start with var in order to create a new variable.",
     },
   ];
 
@@ -197,7 +183,7 @@ const QuestionPage = () => {
 
             <button className="answer-button" onClick={handleAnswerButtonClick}>
               <img src="/lock.svg" alt="lock" />
-              Answer
+              Ответ
             </button>
           </div>
           <div className="question-container">
@@ -236,10 +222,10 @@ const QuestionPage = () => {
             {isAnswerChecked && !isAnswerCorrect && !showExplanation && (
               <div className="feedback-buttons">
                 <button className="explain-button" onClick={handleExplain}>
-                  Explain
+                  Объяснять
                 </button>
                 <button className="got-it-button" onClick={handleNextQuestion}>
-                  Got it
+                  Следующий вопрос
                 </button>
               </div>
             )}
